@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>蘑菇蕈息｜真菌療癒體驗活動</title>
+<title>蘑菇蕈息｜蕈菇修復 × 頌缽療癒</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --green:       #2D6A4F;
-    --green-deep:  #1B4332;
-    --green-mid:   #52B788;
-    --green-light: #D8F3DC;
-    --gold:        #8B6914;
-    --gold-light:  #FFF8E6;
-    --cream:       #FAFAF7;
-    --dark:        #1A1A1A;
-    --gray:        #5C5C5C;
-    --border:      #E0E0D8;
-    --error:       #C62828;
-    --radius:      14px;
+    --bg:        #0A130F;
+    --panel:     #122019;
+    --panel-2:   #16291F;
+    --moss:      #4FA67C;
+    --spore:     #74E8C3;
+    --spore-dim: rgba(116,232,195,0.14);
+    --gold:      #D2A857;
+    --gold-dim:  rgba(210,168,87,0.14);
+    --text:      #E8F1EA;
+    --text-dim:  #9DB3A6;
+    --border:    rgba(116,232,195,0.16);
+    --error:     #E98A8A;
+    --radius:    14px;
   }
 
   html { scroll-behavior: smooth; }
@@ -31,565 +32,518 @@
 
   body {
     font-family: 'Noto Sans TC', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    line-height: 1.7;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(79,166,124,0.16), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    line-height: 1.75;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
 
-  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 740px; margin: 0 auto; padding: 0 20px; }
 
-  /* ════ Section 1：Hero ════ */
+  /* ════ 語言切換 ════ */
+  .lang-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 50;
+    display: flex; gap: 2px;
+    background: rgba(10,19,15,0.72);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 3px;
+    backdrop-filter: blur(8px);
+  }
+  .lang-btn {
+    border: none; background: transparent;
+    color: var(--text-dim);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    padding: 6px 14px; border-radius: 18px; cursor: pointer;
+    min-height: 34px;
+  }
+  .lang-btn.active { background: var(--spore); color: #06150E; }
+  .lang-btn:focus-visible { outline: 2px solid var(--spore); outline-offset: 2px; }
+
+  /* ════ Hero ════ */
   .hero {
     background:
-      linear-gradient(165deg, rgba(20,48,36,0.66) 0%, rgba(12,32,24,0.82) 100%),
-      url('pic/bg_hero.jpg') center 65% / cover no-repeat;
-    color: white;
+      linear-gradient(170deg, rgba(8,18,13,0.62) 0%, rgba(7,16,12,0.88) 100%),
+      url('pic/bg_hero.jpg') center 60% / cover no-repeat;
     text-align: center;
-    padding: 84px 24px 64px;
+    padding: 96px 24px 60px;
     position: relative;
     overflow: hidden;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
   }
   .hero-tag {
     display: inline-block;
-    border: 1px solid rgba(255,255,255,0.45);
+    border: 1px solid var(--border);
+    color: var(--spore);
     border-radius: 20px;
     padding: 5px 18px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    color: rgba(255,255,255,0.9);
+    font-size: 13px; letter-spacing: 2px;
+    margin-bottom: 26px;
+    background: rgba(116,232,195,0.06);
   }
   .hero h1 {
     font-family: 'Noto Serif TC', serif;
-    font-size: clamp(30px, 7vw, 44px);
-    font-weight: 700;
-    letter-spacing: 6px;
-    margin-bottom: 14px;
+    font-size: clamp(32px, 8vw, 50px);
+    font-weight: 700; letter-spacing: 6px;
+    margin-bottom: 18px;
+    color: var(--text);
   }
-  .hero-tagline {
+  /* 直觀活動內容：蕈菇修復 ＋ 頌缽療癒 */
+  .hero-formula {
+    display: inline-flex; align-items: center; gap: 14px;
+    flex-wrap: wrap; justify-content: center;
     font-family: 'Noto Serif TC', serif;
-    font-size: clamp(15px, 3.4vw, 19px);
-    color: rgba(255,255,255,0.92);
-    letter-spacing: 1px;
+    font-size: clamp(17px, 4.4vw, 24px);
+    letter-spacing: 2px;
     margin-bottom: 18px;
   }
-  .hero-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.72);
-    letter-spacing: 1.5px;
-    margin-bottom: 38px;
+  .hero-formula b { color: var(--spore); font-weight: 700; }
+  .hero-formula .plus { color: var(--gold); font-size: 1.1em; }
+  .hero-tagline {
+    font-size: clamp(14px, 3.4vw, 17px);
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-bottom: 30px;
   }
   .hero-cta {
     display: inline-block;
-    background: white;
-    color: var(--green-deep);
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
-    padding: 15px 46px;
-    border-radius: 30px;
+    background: var(--spore);
+    color: #06150E;
+    font-weight: 700; font-size: 16px; letter-spacing: 1px;
+    padding: 15px 46px; border-radius: 30px;
     text-decoration: none;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 24px rgba(116,232,195,0.25);
     transition: transform 0.2s, box-shadow 0.2s;
     min-height: 48px;
   }
-  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.3); }
-  .hero-cta:focus-visible { outline: 3px solid var(--green-mid); outline-offset: 3px; }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(116,232,195,0.35); }
+  .hero-cta:focus-visible { outline: 3px solid var(--spore); outline-offset: 3px; }
+
+  /* ════ 頂部資訊列（label-over-value） ════ */
+  .info-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: -28px; position: relative; z-index: 5;
+  }
+  .info-cell { background: var(--panel); padding: 18px 14px; text-align: center; }
+  .info-label { font-size: 11.5px; color: var(--spore); letter-spacing: 2px; margin-bottom: 6px; }
+  .info-value { font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--text); line-height: 1.5; }
+  @media (max-width: 480px) {
+    .info-row { grid-template-columns: 1fr; }
+    .info-value { font-size: 14.5px; }
+  }
 
   /* ════ 共用 ════ */
   .section { padding: 56px 0 0; }
   .section-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: 22px;
-    color: var(--green);
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 23px; color: var(--spore);
+    font-weight: 700; margin-bottom: 8px; letter-spacing: 1px;
   }
-  .section-lead { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
-
-  .intro-text { font-size: 16px; line-height: 2.15; color: #333; }
+  .section-lead { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; }
+  .intro-text { font-size: 16px; line-height: 2.15; color: var(--text); }
   .intro-text + .intro-text { margin-top: 14px; }
   .intro-quote {
     font-family: 'Noto Serif TC', serif;
-    font-size: 18px;
-    color: var(--green);
-    text-align: center;
-    letter-spacing: 3px;
-    margin: 26px 0;
+    font-size: 18px; color: var(--spore);
+    text-align: center; letter-spacing: 3px; margin: 26px 0;
   }
+
+  /* 搶先體驗場 highlight section */
+  .trial {
+    margin-top: 38px;
+    background: linear-gradient(160deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--spore-dim);
+    border-radius: 18px;
+    padding: 30px 26px;
+    box-shadow: 0 0 0 1px rgba(116,232,195,0.06), 0 16px 40px rgba(0,0,0,0.35);
+  }
+  .trial-flag {
+    display: inline-block;
+    background: var(--spore); color: #06150E;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 1px;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .trial h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 21px; font-weight: 700; margin-bottom: 8px;
+  }
+  .trial-desc { font-size: 14.5px; color: var(--text-dim); line-height: 1.9; margin-bottom: 20px; }
+  .trial-price {
+    font-family: 'Noto Serif TC', serif;
+    color: var(--spore); font-weight: 700;
+  }
+  .trial-price s { color: var(--text-dim); font-weight: 400; font-size: 0.8em; margin-right: 8px; }
+  .trial-days { display: grid; gap: 12px; margin-bottom: 22px; }
+  @media (min-width: 520px) { .trial-days { grid-template-columns: 1fr 1fr; } }
+  .trial-day {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .trial-day .td-date { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: var(--text); }
+  .trial-day .td-time { font-size: 13.5px; color: var(--spore); margin-top: 2px; }
+  .trial-day .td-name { font-size: 13px; color: var(--text-dim); margin-top: 6px; }
+  .trial-cta {
+    display: inline-block;
+    background: var(--spore); color: #06150E;
+    font-weight: 700; font-size: 15px; letter-spacing: 1px;
+    padding: 13px 36px; border-radius: 26px; text-decoration: none;
+    min-height: 46px;
+    transition: transform 0.2s;
+  }
+  .trial-cta:hover { transform: translateY(-2px); }
+  .trial-cta:focus-visible { outline: 3px solid var(--spore); outline-offset: 3px; }
 
   /* 詳細介紹（收合） */
   details.more {
     margin-top: 24px;
-    background: white;
-    border: 1.5px solid var(--border);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
   }
   details.more summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 16px 22px;
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--green);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    list-style: none; cursor: pointer;
+    padding: 16px 22px; font-weight: 700; font-size: 15px;
+    color: var(--spore);
+    display: flex; justify-content: space-between; align-items: center;
     min-height: 48px;
   }
   details.more summary::-webkit-details-marker { display: none; }
-  details.more summary::after { content: "＋"; font-size: 18px; color: var(--green-mid); }
+  details.more summary::after { content: "＋"; font-size: 18px; color: var(--moss); }
   details.more[open] summary::after { content: "－"; }
-  details.more summary:focus-visible { outline: 3px solid var(--green-mid); outline-offset: -3px; }
+  details.more summary:focus-visible { outline: 2px solid var(--spore); outline-offset: -3px; }
   details.more .more-body { padding: 4px 22px 22px; }
-  details.more .more-body p { font-size: 14.5px; color: #444; line-height: 2.05; margin-bottom: 14px; }
+  details.more .more-body p { font-size: 14.5px; color: var(--text-dim); line-height: 2.05; margin-bottom: 14px; }
   details.more .more-body p:last-child { margin-bottom: 0; }
 
   /* 場次卡 */
   .cards { display: grid; gap: 18px; margin-top: 26px; }
   .card {
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 28px 26px;
-    background: white;
+    background: var(--panel);
   }
-  .card.sun { border-top: 4px solid var(--green-mid); }
-  .card.wed { border-top: 4px solid var(--gold); }
-  .card-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 19px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .card-sub { font-size: 13.5px; color: var(--gray); margin-bottom: 12px; }
+  .card.sun { border-top: 3px solid var(--spore); }
+  .card.wed { border-top: 3px solid var(--gold); }
+  .card-title { font-family: 'Noto Serif TC', serif; font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+  .card-sub { font-size: 13.5px; color: var(--text-dim); margin-bottom: 12px; }
   .card-elements {
-    font-size: 13px;
-    color: var(--green);
-    background: var(--green-light);
-    border-radius: 10px;
-    padding: 8px 14px;
-    margin-bottom: 16px;
-    line-height: 1.8;
+    font-size: 13px; color: var(--spore);
+    background: var(--spore-dim);
+    border-radius: 10px; padding: 8px 14px; margin-bottom: 16px; line-height: 1.8;
   }
-  .card.wed .card-elements { color: var(--gold); background: var(--gold-light); }
-  .card-desc { font-size: 14.5px; color: #444; line-height: 1.95; margin-bottom: 4px; }
-  .card-end {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 15px;
-    color: var(--green);
-    margin-top: 14px;
-  }
+  .card.wed .card-elements { color: var(--gold); background: var(--gold-dim); }
+  .card-desc { font-size: 14.5px; color: var(--text-dim); line-height: 1.95; margin-bottom: 4px; }
+  .card-end { font-family: 'Noto Serif TC', serif; font-size: 15px; color: var(--spore); margin-top: 14px; }
   .card.wed .card-end { color: var(--gold); }
   details.card-more summary {
-    list-style: none;
-    cursor: pointer;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--green-mid);
-    padding: 10px 0 2px;
-    min-height: 44px;
+    list-style: none; cursor: pointer; font-size: 13.5px; font-weight: 700;
+    color: var(--moss); padding: 10px 0 2px; min-height: 44px;
     display: flex; align-items: center;
   }
   details.card-more summary::-webkit-details-marker { display: none; }
   details.card-more summary::before { content: "▸ "; margin-right: 4px; }
   details.card-more[open] summary::before { content: "▾ "; }
-  details.card-more summary:focus-visible { outline: 3px solid var(--green-mid); outline-offset: 2px; }
-  details.card-more p { font-size: 14px; color: #555; line-height: 2; margin-top: 10px; }
+  details.card-more summary:focus-visible { outline: 2px solid var(--spore); outline-offset: 2px; }
+  details.card-more p { font-size: 14px; color: var(--text-dim); line-height: 2; margin-top: 10px; }
+  details.card-more .cm-h { display: block; font-weight: 700; font-size: 14px; color: var(--spore); margin-top: 18px; letter-spacing: 0.5px; }
+  .card.wed details.card-more .cm-h { color: var(--gold); }
   .card-note {
-    text-align: center;
-    font-size: 13.5px;
-    color: var(--gray);
-    background: white;
-    border: 1.5px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 12px;
+    text-align: center; font-size: 13.5px; color: var(--text-dim);
+    background: var(--panel);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius); padding: 12px;
   }
 
-  /* ════ Section 2 ════ */
+  /* 地點 / 票價 */
   .venue-box {
-    background: white;
-    border: 1.5px dashed var(--border);
+    background: var(--panel);
+    border: 1px dashed var(--border);
     border-radius: var(--radius);
-    padding: 18px 22px;
-    font-size: 14.5px;
-    color: var(--gray);
-    margin-bottom: 36px;
+    padding: 18px 22px; font-size: 14.5px; color: var(--text-dim);
+    margin-bottom: 36px; line-height: 1.95;
   }
-  .venue-box strong { color: var(--dark); }
+  .venue-box strong { color: var(--text); }
 
   .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .price-card {
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 24px 16px;
-    text-align: center;
-    background: white;
-    position: relative;
+    padding: 24px 16px; text-align: center;
+    background: var(--panel); position: relative;
   }
-  .price-card.featured { border: 2px solid var(--green); background: white; box-shadow: 0 4px 16px rgba(45,106,79,0.10); }
+  .price-card.featured { border: 1.5px solid var(--spore); box-shadow: 0 8px 28px rgba(116,232,195,0.12); }
   .price-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--green);
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 3px 14px;
-    border-radius: 12px;
-    white-space: nowrap;
+    background: var(--spore); color: #06150E;
+    font-size: 12px; font-weight: 700; padding: 3px 14px;
+    border-radius: 12px; white-space: nowrap;
   }
-  .price-label { font-size: 13.5px; color: var(--gray); margin-bottom: 6px; }
-  .price-card.featured .price-label { color: var(--green); font-weight: 500; }
-  .price-amount { font-family: 'Noto Serif TC', serif; font-size: 30px; font-weight: 700; color: var(--green); }
-  .price-note { font-size: 12px; color: var(--gray); margin-top: 4px; }
-  .price-gift-line { text-align: center; font-size: 13.5px; color: var(--gold); font-weight: 500; margin-top: 16px; }
-
-  /* 日曆 */
-  .cal-wrap { margin-top: 36px; }
-  .cal-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
-  .cal-legend { display: flex; gap: 18px; font-size: 13px; color: var(--gray); margin-bottom: 16px; }
-  .cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-  .dot.sun { background: var(--green-mid); }
-  .dot.wed { background: var(--gold); }
-  .cal-grid { display: grid; gap: 16px; }
-  @media (min-width: 640px) { .cal-grid { grid-template-columns: repeat(3, 1fr); } }
-  .cal {
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 14px;
-  }
-  .cal h4 { text-align: center; font-size: 14.5px; color: var(--dark); margin-bottom: 10px; letter-spacing: 1px; }
-  .cal table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  .cal th { font-size: 11px; color: var(--gray); font-weight: 500; padding-bottom: 6px; }
-  .cal td { text-align: center; font-size: 13px; color: #555; padding: 0; height: 34px; }
-  .cal td span {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px; border-radius: 50%;
-  }
-  .cal td.ev-sun span { background: var(--green-mid); color: white; font-weight: 700; }
-  .cal td.ev-wed span { background: var(--gold); color: white; font-weight: 700; }
-  .cal td.past span { color: #BBB; text-decoration: line-through; }
+  .price-label { font-size: 13.5px; color: var(--text-dim); margin-bottom: 6px; }
+  .price-card.featured .price-label { color: var(--spore); font-weight: 500; }
+  .price-amount { font-family: 'Noto Serif TC', serif; font-size: 30px; font-weight: 700; color: var(--spore); }
+  .price-note { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
 
   /* 流程 timeline */
   .steps { margin-top: 40px; }
-  .steps-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--green); margin-bottom: 20px; }
+  .steps-title { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--spore); margin-bottom: 20px; }
   .step { display: flex; gap: 16px; position: relative; padding-bottom: 24px; }
   .step:last-child { padding-bottom: 0; }
-  .step::before {
-    content: "";
-    position: absolute; left: 19px; top: 40px; bottom: 0;
-    width: 2px; background: var(--green-light);
-  }
+  .step::before { content: ""; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--spore-dim); }
   .step:last-child::before { display: none; }
   .step-num {
-    flex-shrink: 0;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: var(--green);
-    color: white;
-    font-weight: 700;
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--moss); color: #06150E; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 4px var(--green-light);
+    box-shadow: 0 0 0 4px var(--spore-dim);
   }
-  .step-num.done { background: var(--gold); box-shadow: 0 0 0 4px var(--gold-light); }
+  .step-num.done { background: var(--gold); box-shadow: 0 0 0 4px var(--gold-dim); }
   .step-body { padding-top: 6px; }
   .step-name { font-weight: 700; font-size: 15.5px; margin-bottom: 2px; }
-  .step-desc { font-size: 13.5px; color: var(--gray); line-height: 1.7; }
-  .step-time { font-weight: 400; font-size: 13.5px; color: var(--gray); margin-left: 4px; }
+  .step-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.7; }
+  .step-time { font-weight: 400; font-size: 13.5px; color: var(--text-dim); margin-left: 4px; }
 
   .notice-box {
     margin-top: 36px;
-    background: white;
-    border: 1.5px solid var(--border);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 22px 24px;
   }
   .notice-title { font-size: 14.5px; font-weight: 700; margin-bottom: 10px; }
   .notice-box ul { list-style: none; }
-  .notice-box li { font-size: 14px; color: #444; padding-left: 18px; position: relative; margin-bottom: 6px; }
-  .notice-box li::before {
-    content: "";
-    position: absolute; left: 2px; top: 11px;
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green-mid);
-  }
+  .notice-box li { font-size: 14px; color: var(--text-dim); padding-left: 18px; position: relative; margin-bottom: 6px; }
+  .notice-box li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--moss); }
 
-  /* ════ Section 3：贈品 ════ */
+  /* 贈品 */
   .gift-card {
-    background: white;
-    border: 1.5px solid var(--border);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 3px 14px rgba(0,0,0,0.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
   }
   @media (min-width: 640px) { .gift-card { display: grid; grid-template-columns: 240px 1fr; } }
-  .gift-photo { background: var(--cream); border-right: 1px solid var(--border); min-height: 200px; display: flex; align-items: center; justify-content: center; }
+  .gift-photo { background: var(--bg); border-right: 1px solid var(--border); min-height: 200px; display: flex; align-items: center; justify-content: center; }
   .gift-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .gift-photo-placeholder { text-align: center; color: var(--green); font-size: 13px; padding: 20px; line-height: 1.8; }
-  .gift-photo-placeholder .ph-icon { font-size: 40px; display: block; margin-bottom: 8px; }
   .gift-body { padding: 28px 26px; }
-  .gift-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
-  .gift-desc { font-size: 14.5px; color: #444; line-height: 1.9; margin-bottom: 12px; }
+  .gift-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: var(--spore); margin-bottom: 8px; }
+  .gift-desc { font-size: 14.5px; color: var(--text-dim); line-height: 1.9; margin-bottom: 12px; }
   .gift-value {
-    display: inline-block;
-    background: var(--gold-light);
-    color: var(--gold);
-    font-size: 13.5px;
-    font-weight: 700;
-    padding: 5px 14px;
-    border-radius: 14px;
+    display: inline-block; background: var(--gold-dim); color: var(--gold);
+    font-size: 13.5px; font-weight: 700; padding: 5px 14px; border-radius: 14px;
   }
 
-  /* ════ 關於我們 ════ */
+  /* 關於我們 */
   .about-box {
-    background: white;
-    border: 1.5px solid var(--border);
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 26px 24px;
-    font-size: 14.5px;
-    line-height: 2;
-    color: #444;
-    margin-bottom: 18px;
+    padding: 26px 24px; font-size: 14.5px; line-height: 2;
+    color: var(--text-dim); margin-bottom: 18px;
   }
-  .about-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+  .about-name { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 700; color: var(--spore); margin-bottom: 10px; }
   .about-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
   .about-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    border: 1.5px solid var(--green);
-    color: var(--green);
-    border-radius: 24px;
-    padding: 9px 20px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    min-height: 44px;
+    border: 1px solid var(--spore); color: var(--spore);
+    border-radius: 24px; padding: 9px 20px; text-decoration: none;
+    font-weight: 700; font-size: 14px; min-height: 44px;
     transition: background 0.2s, color 0.2s;
   }
-  .about-btn:hover { background: var(--green); color: #fff; }
-  .about-btn.disabled { border-color: var(--border); color: var(--gray); pointer-events: none; }
-  .cert-list { list-style: none; margin-top: 12px; font-size: 13.5px; color: var(--gray); line-height: 2.1; }
-  .cert-list li::before { content: "✦ "; color: var(--green-mid); }
+  .about-btn:hover { background: var(--spore); color: #06150E; }
+  .cert-list { list-style: none; margin-top: 12px; font-size: 13.5px; color: var(--text-dim); line-height: 2.1; }
+  .cert-list li::before { content: "✦ "; color: var(--moss); }
 
-  /* ════ 聲明與同意 ════ */
-  .consent-box {
-    background: white;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    max-height: 300px;
-    overflow-y: auto;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.9;
-    margin-bottom: 14px;
-  }
-  .consent-box h4 { font-size: 14px; color: var(--dark); margin: 16px 0 6px; }
-  .consent-box h4:first-child { margin-top: 0; }
-  .consent-box ul { padding-left: 20px; margin: 4px 0; }
-  .consent-box ul ul { margin: 2px 0; }
-  .consent-check {
-    display: flex; gap: 10px; align-items: flex-start;
-    margin-bottom: 26px;
-    font-size: 14.5px;
-    cursor: pointer;
-    line-height: 1.7;
-  }
-  .consent-check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; }
-
-  /* ════ Section 4：表單 ════ */
+  /* 表單 */
   .form-wrap {
-    background: white;
-    border-radius: 20px;
-    padding: 40px 30px;
-    border: 1.5px solid var(--border);
-    margin-top: 56px;
-    margin-bottom: 56px;
-    scroll-margin-top: 20px;
+    background: var(--panel);
+    border-radius: 20px; padding: 40px 30px;
+    border: 1px solid var(--border);
+    margin-top: 56px; margin-bottom: 56px; scroll-margin-top: 20px;
   }
-  .form-title {
-    font-family: 'Noto Serif TC', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--green);
-    text-align: center;
-    margin-bottom: 6px;
+  .form-title { font-family: 'Noto Serif TC', serif; font-size: 25px; font-weight: 700; color: var(--spore); text-align: center; margin-bottom: 6px; }
+  .form-sub { text-align: center; font-size: 14px; color: var(--text-dim); margin-bottom: 14px; }
+  .form-mode-pill {
+    display: block; text-align: center; margin: 0 auto 28px;
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    padding: 7px 16px; border-radius: 20px; width: fit-content;
   }
-  .form-sub { text-align: center; font-size: 14px; color: var(--gray); margin-bottom: 34px; }
+  .form-mode-pill.trial { background: var(--spore-dim); color: var(--spore); }
+  .form-mode-pill.normal { background: var(--gold-dim); color: var(--gold); }
 
   .form-group { margin-bottom: 22px; }
-  .form-label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .form-label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
   .form-label .req { color: var(--error); margin-left: 2px; }
   .form-input, .form-select, .form-textarea {
     width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 14px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 16px;
-    color: var(--dark);
-    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 13px 14px;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 16px;
+    color: var(--text); background: var(--bg);
     transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    appearance: none;
-    min-height: 48px;
+    outline: none; appearance: none; min-height: 48px;
   }
+  .form-input::placeholder, .form-textarea::placeholder { color: #5d756a; }
   .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--green-mid);
-    box-shadow: 0 0 0 3px rgba(82,183,136,0.18);
-    background: white;
+    border-color: var(--spore); box-shadow: 0 0 0 3px rgba(116,232,195,0.18);
   }
+  .form-select option { background: var(--panel); color: var(--text); }
   .form-textarea { height: 96px; resize: vertical; }
   .form-select-wrap { position: relative; }
-  .form-select-wrap::after {
-    content: "▾";
-    position: absolute; right: 14px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--gray);
-    pointer-events: none;
-  }
-  .field-hint { font-size: 12.5px; color: var(--gray); margin-top: 6px; }
+  .form-select-wrap::after { content: "▾"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+  .field-hint { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; }
 
   .session-picker { display: grid; gap: 10px; }
   @media (min-width: 560px) { .session-picker { grid-template-columns: 1fr 1fr; } }
   .session-option { position: absolute; opacity: 0; }
   .session-label {
     display: flex; align-items: center; gap: 12px;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    padding: 15px 16px;
-    cursor: pointer;
-    background: var(--cream);
-    transition: border-color 0.2s, background 0.2s;
-    min-height: 48px;
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 15px 16px; cursor: pointer; background: var(--bg);
+    transition: border-color 0.2s, background 0.2s; min-height: 48px;
   }
-  .session-option:checked + .session-label { border: 2px solid var(--green); background: #fff; box-shadow: 0 2px 10px rgba(45,106,79,0.12); }
-  .session-option:focus-visible + .session-label { outline: 3px solid var(--green-mid); outline-offset: 2px; }
+  .session-option:checked + .session-label { border: 1.5px solid var(--spore); background: var(--panel-2); box-shadow: 0 2px 12px rgba(116,232,195,0.14); }
+  .session-option:focus-visible + .session-label { outline: 2px solid var(--spore); outline-offset: 2px; }
   .session-emoji { font-size: 20px; }
   .session-name { font-weight: 600; font-size: 15px; }
-  .session-time { font-size: 12.5px; color: var(--gray); }
-  .session-option:checked + .session-label .session-time { color: var(--green); }
+  .session-time { font-size: 12.5px; color: var(--text-dim); }
+  .session-option:checked + .session-label .session-time { color: var(--spore); }
+
+  /* ════ 月曆式日期選擇 ════ */
+  .datecal { margin-top: 4px; }
+  .datecal-month { margin-bottom: 18px; }
+  .datecal-month h4 { font-family: 'Noto Serif TC', serif; text-align: center; font-size: 15px; color: var(--text); margin-bottom: 10px; letter-spacing: 1px; }
+  .datecal table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .datecal th { font-size: 11.5px; color: var(--text-dim); font-weight: 500; padding-bottom: 8px; }
+  .datecal td { text-align: center; padding: 3px 0; }
+  .datecal td .cell {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    font-size: 14px; color: var(--text-dim);
+  }
+  .datecal td.is-event .cell {
+    cursor: pointer; color: var(--text); font-weight: 700;
+    border: 1px solid var(--border); background: var(--panel);
+    transition: transform 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .datecal td.sun .cell { border-color: rgba(116,232,195,0.4); }
+  .datecal td.wed .cell { border-color: rgba(210,168,87,0.45); }
+  .datecal td.is-event .cell:hover { transform: scale(1.08); }
+  .datecal td.is-event.selected .cell { background: var(--spore); color: #06150E; border-color: var(--spore); box-shadow: 0 0 0 4px var(--spore-dim); }
+  .datecal td.is-event.trial .cell::after { content: ""; position: absolute; }
+  .datecal td.is-event.trial .cell { box-shadow: 0 0 0 2px var(--gold-dim); }
+  .datecal td.past .cell { color: #3f5249; text-decoration: line-through; }
+  .datecal-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--text-dim); margin-bottom: 16px; }
+  .datecal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .lg-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 1px solid; }
+  .lg-dot.sun { border-color: var(--spore); }
+  .lg-dot.wed { border-color: var(--gold); }
+  .lg-dot.trial { background: var(--gold-dim); border-color: var(--gold); }
+  .datecal-picked { font-size: 13.5px; color: var(--spore); margin-top: 6px; min-height: 20px; }
+
+  .bird-msg { display: none; font-size: 13.5px; border-radius: 10px; padding: 10px 14px; margin-top: 10px; line-height: 1.7; }
+  .bird-msg.ok { display: block; background: var(--spore-dim); color: var(--spore); font-weight: 500; }
+  .bird-msg.late { display: block; background: var(--gold-dim); color: var(--gold); font-weight: 500; }
+  .bird-msg.trial { display: block; background: var(--spore-dim); color: var(--spore); font-weight: 700; }
+  .promo-msg { font-size: 13px; margin-top: 6px; display: none; font-weight: 500; }
+
+  .total-box {
+    display: flex; align-items: baseline; justify-content: space-between;
+    background: linear-gradient(135deg, var(--panel-2), #0d1d15);
+    border: 1px solid var(--spore-dim);
+    color: var(--text); border-radius: 12px; padding: 18px 22px; margin: 28px 0 24px;
+  }
+  .total-label { font-size: 14.5px; letter-spacing: 1px; }
+  .total-detail { font-size: 12px; color: var(--text-dim); display: block; margin-top: 2px; }
+  .total-amount { font-family: 'Noto Serif TC', serif; font-size: 30px; font-weight: 700; color: var(--spore); }
+
+  .pay-later {
+    background: var(--gold-dim);
+    border: 1px solid rgba(210,168,87,0.35);
+    border-radius: 12px; padding: 16px 18px; font-size: 13.5px;
+    color: #E7CE9A; line-height: 1.9; margin-bottom: 26px;
+  }
+  .pay-later strong { color: var(--gold); }
 
   /* 是/否 pill */
   .pill-picker { display: flex; gap: 10px; }
   .pill-option { position: absolute; opacity: 0; }
   .pill-label {
-    flex: 1;
-    text-align: center;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    padding: 13px 10px;
-    cursor: pointer;
-    background: var(--cream);
-    font-size: 14.5px;
-    transition: border-color 0.2s, background 0.2s;
-    min-height: 48px;
+    flex: 1; text-align: center;
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 13px 10px; cursor: pointer; background: var(--bg);
+    font-size: 14.5px; color: var(--text);
+    transition: border-color 0.2s, background 0.2s; min-height: 48px;
     display: flex; align-items: center; justify-content: center;
   }
-  .pill-option:checked + .pill-label { border: 2px solid var(--green); background: #fff; color: var(--green); font-weight: 700; }
-  .pill-option:focus-visible + .pill-label { outline: 3px solid var(--green-mid); outline-offset: 2px; }
+  .pill-option:checked + .pill-label { border: 1.5px solid var(--spore); background: var(--panel-2); color: var(--spore); font-weight: 700; }
+  .pill-option:focus-visible + .pill-label { outline: 2px solid var(--spore); outline-offset: 2px; }
 
-  .bird-msg { display: none; font-size: 13.5px; border-radius: 10px; padding: 10px 14px; margin-top: 10px; line-height: 1.7; }
-  .bird-msg.ok { display: block; background: var(--green-light); color: var(--green); font-weight: 500; }
-  .bird-msg.late { display: block; background: var(--gold-light); color: var(--gold); font-weight: 500; }
-
-  .promo-msg { font-size: 13px; margin-top: 6px; display: none; font-weight: 500; }
-
-  .total-box {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    background: var(--green-deep);
-    color: white;
-    border-radius: 12px;
-    padding: 18px 22px;
-    margin: 28px 0 24px;
+  .consent-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px; max-height: 300px; overflow-y: auto;
+    font-size: 13px; color: var(--text-dim); line-height: 1.9; margin-bottom: 14px;
   }
-  .total-label { font-size: 14.5px; letter-spacing: 1px; }
-  .total-detail { font-size: 12px; color: rgba(255,255,255,0.7); display: block; margin-top: 2px; }
-  .total-amount { font-family: 'Noto Serif TC', serif; font-size: 30px; font-weight: 700; }
-
-  .pay-later {
-    background: var(--gold-light);
-    border: 1.5px solid var(--gold);
-    border-radius: 12px;
-    padding: 16px 18px;
-    font-size: 13.5px;
-    color: #5A4A12;
-    line-height: 1.9;
-    margin-bottom: 26px;
-  }
-  .pay-later strong { color: var(--gold); }
+  .consent-box h4 { font-size: 14px; color: var(--text); margin: 16px 0 6px; }
+  .consent-box h4:first-child { margin-top: 0; }
+  .consent-box ul { padding-left: 20px; margin: 4px 0; }
+  .consent-box ul ul { margin: 2px 0; }
+  .consent-check { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 26px; font-size: 14.5px; cursor: pointer; line-height: 1.7; color: var(--text); }
+  .consent-check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--spore); flex-shrink: 0; }
 
   .submit-btn {
     width: 100%;
-    background: linear-gradient(135deg, var(--green), var(--green-deep));
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 17px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    cursor: pointer;
-    min-height: 52px;
+    background: linear-gradient(135deg, var(--spore), var(--moss));
+    color: #06150E; border: none; border-radius: 12px; padding: 17px;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 17px; font-weight: 700;
+    letter-spacing: 2px; cursor: pointer; min-height: 52px;
     transition: opacity 0.2s, transform 0.1s;
   }
   .submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
   .submit-btn:active { transform: translateY(0); }
-  .submit-btn:focus-visible { outline: 3px solid var(--green-mid); outline-offset: 3px; }
-  .form-note { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 14px; line-height: 1.9; }
+  .submit-btn:focus-visible { outline: 3px solid var(--spore); outline-offset: 3px; }
+  .form-note { text-align: center; font-size: 12.5px; color: var(--text-dim); margin-top: 14px; line-height: 1.9; }
+  .form-note a, .field-hint a { color: var(--spore); }
 
-  /* ════ Section 5：成功頁 ════ */
+  /* 成功頁 */
   .success { display: none; text-align: center; padding: 44px 20px; }
   .success .s-icon { font-size: 52px; margin-bottom: 14px; }
-  .success .s-title { font-family: 'Noto Serif TC', serif; font-size: 22px; color: var(--green); font-weight: 700; margin-bottom: 14px; }
-  .success .s-warn {
-    display: inline-block;
-    background: var(--gold-light);
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 12px;
-    padding: 10px 20px;
-    margin-bottom: 16px;
-  }
-  .success .s-body { font-size: 14.5px; color: #444; line-height: 2.1; }
-  .success .s-mail {
-    display: inline-block;
-    background: var(--green-light);
-    color: var(--green);
-    font-weight: 700;
-    font-size: 14px;
-    border-radius: 12px;
-    padding: 10px 20px;
-    margin: 16px 0;
-  }
-  .success .s-end { font-family: 'Noto Serif TC', serif; color: var(--green); margin-top: 12px; line-height: 2; }
+  .success .s-title { font-family: 'Noto Serif TC', serif; font-size: 22px; color: var(--spore); font-weight: 700; margin-bottom: 14px; }
+  .success .s-warn { display: inline-block; background: var(--gold-dim); border: 1px solid rgba(210,168,87,0.4); color: var(--gold); font-weight: 700; font-size: 14px; border-radius: 12px; padding: 10px 20px; margin-bottom: 16px; }
+  .success .s-body { font-size: 14.5px; color: var(--text-dim); line-height: 2.1; }
+  .success .s-body strong { color: var(--text); }
+  .success .s-mail { display: inline-block; background: var(--spore-dim); color: var(--spore); font-weight: 700; font-size: 14px; border-radius: 12px; padding: 10px 20px; margin: 16px 0; }
+  .success .s-end { font-family: 'Noto Serif TC', serif; color: var(--spore); margin-top: 12px; line-height: 2; }
+  .success a { color: var(--spore); }
 
-  /* Footer */
   .footer {
-    background: var(--green-deep);
-    color: rgba(255,255,255,0.75);
-    text-align: center;
-    padding: 38px 24px;
-    font-size: 13.5px;
-    line-height: 2.2;
+    background: #07110C;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim); text-align: center;
+    padding: 38px 24px; font-size: 13.5px; line-height: 2.2; margin-top: 40px;
   }
-  .footer strong { color: white; }
+  .footer strong { color: var(--text); }
+  .footer a { color: var(--spore); }
   .footer .f-links { margin: 6px 0; }
-  .footer .f-co { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 12.5px; }
+  .footer .f-co { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12.5px; }
 
   @media (max-width: 480px) {
     .price-grid { grid-template-columns: 1fr; gap: 18px; }
     .form-wrap { padding: 30px 18px; }
-    .hero { padding: 64px 20px 50px; }
+    .hero { padding: 78px 20px 50px; }
     .total-box { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 </style>
@@ -602,312 +556,305 @@
   </div>
 </noscript>
 
-<!-- ════ Section 1：Banner ════ -->
+<div class="lang-toggle" role="group" aria-label="語言切換 / Language">
+  <button class="lang-btn active" id="btn-zh" type="button" onclick="setLang('zh')">中</button>
+  <button class="lang-btn" id="btn-en" type="button" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- ════ Hero ════ -->
 <header class="hero">
-  <div class="hero-tag">真菌療癒體驗Workshop｜Your first mycology journey</div>
-  <h1>真菌療癒體驗</h1>
-  <p class="hero-tagline">來自大地：一趟透過菌絲網絡與頻率共振的修復旅程</p>
-  <p class="hero-sub">功能性蕈菇｜以色列花草茶｜頌缽共振｜訊息卡引導</p>
-  <a class="hero-cta" href="#signup">立即報名</a>
+  <div class="hero-tag" data-i18n="hero.tag">真菌療癒體驗 Workshop｜Your first mycology journey</div>
+  <h1 data-i18n="hero.title">真菌療癒體驗</h1>
+  <p class="hero-formula" data-i18n="hero.formula"><b>蕈菇修復</b><span class="plus">＋</span><b>頌缽療癒</b></p>
+  <p class="hero-tagline" data-i18n="hero.tagline">一趟透過菌絲網絡與頻率共振的修復旅程</p>
+  <a class="hero-cta" href="#signup" data-i18n="hero.cta">立即報名</a>
 </header>
 
 <main class="container">
 
+  <!-- 頂部資訊列 -->
+  <div class="info-row">
+    <div class="info-cell">
+      <p class="info-label" data-i18n="info.dateLabel">日期 DATE</p>
+      <p class="info-value" data-i18n="info.dateValue">2026 夏季<br>6 – 8 月</p>
+    </div>
+    <div class="info-cell">
+      <p class="info-label" data-i18n="info.timeLabel">時長 LENGTH</p>
+      <p class="info-value" data-i18n="info.timeValue">單場約<br>1.5 小時</p>
+    </div>
+    <div class="info-cell">
+      <p class="info-label" data-i18n="info.placeLabel">地點 PLACE</p>
+      <p class="info-value" data-i18n="info.placeValue">台中・中區<br>頌缽工作室</p>
+    </div>
+  </div>
+  <!-- ════ 搶先體驗場（7/1 前顯示） ════ -->
+  <section class="section" id="trialSection" aria-label="搶先體驗場">
+    <div class="trial">
+      <span class="trial-flag" data-i18n="trial.flag">⚡ 下週・搶先體驗場</span>
+      <h3 data-i18n="trial.title">暑假場開跑前，先來體驗一次</h3>
+      <p class="trial-desc" data-i18n="trial.desc">
+        正式暑假場登場前，我們開放兩場搶先體驗場，名額有限。
+        體驗價 <span class="trial-price"><s>NT$2,800</s>NT$2,500</span>，同樣含市值 NT$2,400 蕈菇療癒萃取三入組。
+      </p>
+      <div class="trial-days">
+        <div class="trial-day">
+          <p class="td-date" data-i18n="trial.d1date">6 / 24（三）</p>
+          <p class="td-time" data-i18n="trial.d1time">19:00 – 21:00</p>
+          <p class="td-name" data-i18n="trial.d1name">🌙 週間夜晚的全面放鬆・靈芝</p>
+        </div>
+        <div class="trial-day">
+          <p class="td-date" data-i18n="trial.d2date">6 / 28（日）</p>
+          <p class="td-time" data-i18n="trial.d2time">15:00 – 17:00</p>
+          <p class="td-name" data-i18n="trial.d2name">☀ 全方位感知冥想・猴頭菇</p>
+        </div>
+      </div>
+      <a class="trial-cta" href="#signup" data-i18n="trial.cta">立即報名搶先體驗場 →</a>
+    </div>
+  </section>
+
   <!-- 活動簡介 -->
   <section class="section" aria-label="活動簡介">
-    <h2 class="section-title">活動簡介</h2>
-    <p class="intro-text">
+    <h2 class="section-title" data-i18n="intro.title">活動簡介</h2>
+    <p class="intro-text" data-i18n="intro.p1">
       在城市裡待太久的身體，需要一場真正的休息。<br>
-      這是一場結合「功能性蕈菇飲品」與「頌缽聲波療癒」的兩小時體驗——
+      這是一場結合「功能性蕈菇飲品」與「頌缽聲波療癒」的體驗，單場約 1.5 小時——
     </p>
-    <p class="intro-quote">始於大地，終於心聲。</p>
-    <p class="intro-text">
-      從一杯來自大地的蕈菇草本飲開始繞轉身體網絡與自然的連結，在頌缽的共振裡透過音頻、呼吸放下緊繃，最後以一張訊息卡，帶走屬於你的蕈息。
+    <p class="intro-quote" data-i18n="intro.quote">始於大地，終於心聲。</p>
+    <p class="intro-text" data-i18n="intro.p2">
+      從一杯來自大地的蕈菇草本飲開始，繞轉身體網絡與自然的連結，在頌缽的共振裡透過音頻、呼吸放下緊繃，最後以一張訊息卡，帶走屬於你的蕈息。
     </p>
 
     <details class="more">
-      <summary>詳細介紹｜關於真菌療癒 Mycotherapy</summary>
+      <summary data-i18n="intro.moreSummary">詳細介紹｜關於真菌療癒 Mycotherapy</summary>
       <div class="more-body">
-        <p>
-          地球上的真菌存在超過四億年，比植物更古老，比動物更早學會在這個星球上生存，在大地裡傳遞、蔓延、連結整個星球、生物及宇宙。
-        </p>
-        <p>
-          真菌學家 Paul Stamets 說，菌絲網絡是大地的神經系統——人類，曾自以為自己是獨立的個體，卻忘了身體裡有一部分早就知道怎麼和這個星球對話。
-        </p>
-        <p>
-          近年來，功能性真菌療癒（Mycotherapy）在西方整合醫學領域引發越來越多的關注。在西方科學家之間，更引起了一波蕈菇狂熱——那些被人類遺忘的、微小但在大地中寬廣的古老知識。
-        </p>
-        <p>
-          蘑菇蕈息 Mycogen 與頌缽療癒工作室合作，結合四大元素中的其二——來自大地的真菌網絡與來自大氣的音頻共振，自內而外的全方位身心調養。
-        </p>
-        <p>
-          本次課程活動除了將帶體驗者初步了解真菌療癒（Mycotherapy），也將透過蕈菇花草飲、頌缽療癒，帶來一場全方位的真菌療癒入門體驗——從功能性真菌滴劑開啟身體的接收狀態，搭配以色列草本植物茶飲，再由頌缽聲波帶領意識走向更深的靜定，最後以訊息卡收尾，讓每個人帶著屬於自己的答案離開。
-        </p>
+        <p data-i18n="intro.more1">地球上的真菌存在超過四億年，比植物更古老，比動物更早學會在這個星球上生存，在大地裡傳遞、蔓延、連結整個星球、生物及宇宙。</p>
+        <p data-i18n="intro.more2">真菌學家 Paul Stamets 說，菌絲網絡是大地的神經系統——人類，曾自以為自己是獨立的個體，卻忘了身體裡有一部分早就知道怎麼和這個星球對話。</p>
+        <p data-i18n="intro.more3">近年來，功能性真菌療癒（Mycotherapy）在西方整合醫學領域引發越來越多的關注。在西方科學家之間，更引起了一波蕈菇狂熱——那些被人類遺忘的、微小但在大地中寬廣的古老知識。</p>
+        <p data-i18n="intro.more4">蘑菇蕈息 Mycogen 與頌缽療癒工作室合作，結合四大元素中的其二——來自大地的真菌網絡與來自大氣的音頻共振，自內而外的全方位身心調養。</p>
+        <p data-i18n="intro.more5">本次活動除了帶體驗者初步了解真菌療癒（Mycotherapy），也將透過蕈菇花草飲、頌缽療癒，帶來一場全方位的真菌療癒入門體驗——從功能性真菌滴劑開啟身體的接收狀態，搭配以色列草本植物茶飲，再由頌缽聲波帶領意識走向更深的靜定，最後以訊息卡收尾，讓每個人帶著屬於自己的答案離開。</p>
       </div>
     </details>
 
     <!-- 場次介紹 -->
     <div class="cards">
       <div class="card sun">
-        <h3 class="card-title">☀ 全方位感知冥想</h3>
-        <p class="card-sub">每週日 14:00–16:00｜首場 6/28</p>
-        <p class="card-elements">蕈菇療癒：猴頭菇｜以色列花草茶：沙漠薄荷｜頌缽冥想｜訊息卡引導</p>
-        <p class="card-desc">
-          週日午後，透過真菌滋養與頌缽冥想，重新整理繁忙緊繃的身心狀態，迎接面對全新一週的開始。
-        </p>
+        <h3 class="card-title" data-i18n="card.sunTitle">🌿 課程一｜全方位冥想感知修復</h3>
+        <p class="card-sub" data-i18n="card.sunSub">每週日 14:00–16:00｜首場 6/28</p>
+        <p class="card-elements" data-i18n="card.sunEl">猴頭菇蕈菇飲｜以色列沙漠薄荷茶｜頌缽冥想｜訊息卡引導</p>
+        <p class="card-desc" data-i18n="card.sunDesc">思緒的逐漸遲鈍，從來都不是聰明與否的問題。當自律神經系統長期由交感神經主導，身體便容易在無意識的緊繃中，失去與放鬆本能的連結。這場體驗課程，是一場溫柔的向內探索，期望陪著你一起找回啟動放鬆、重置腦內秩序的「開關」，在喧囂的日常中，尋獲一處寧靜而澄澈的維度。</p>
         <details class="card-more">
-          <summary>閱讀完整介紹</summary>
-          <p>大部分人以為冥想很難，其實是全身的神經系統都太過緊繃，很難達到完全放鬆及沉靜。</p>
-          <p>猴頭菇（Lion's Mane）是目前神經科學研究裡討論最熱烈的功能性真菌之一，近年在國際間持續受到研究關注。陪伴在資訊疲勞的社會裡長期超載的大腦，慢慢讓它回想本之初的清醒狀態。</p>
-          <p>來自以色列的有機沙漠薄荷花草茶：腸道跟大腦的關係比我們以為的更緊密，腸道解除緊繃狀態後，腦袋才有機會跟著一起進入到更放鬆的狀態。</p>
-          <p>在身體完整吸收真菌草本的滋養後，再由頌缽療癒透過頻率共振及引導冥想的路程，舒緩而溫和的打開頂輪並進入到修復旅程當中。</p>
+          <summary data-i18n="card.readMore">閱讀完整介紹</summary>
+          <span class="cm-h" data-i18n="card.sunH1">🍄 真菌修復｜猴頭菇與以色列有機沙漠薄荷花草茶</span>
+          <p data-i18n="card.sunP1">先喝一杯，重建腦內的清明路徑。猴頭菇（Lion's Mane）是近年國際神經科學領域備受矚目的功能性真菌。科學研究指出，其活性成分能刺激神經生長因子（NGF）的生成。NGF 是維持神經元健康、強化腦神經網絡運作的關鍵蛋白質，在學習、記憶與認知功能的維護上扮演著重要角色。</p>
+          <p data-i18n="card.sunP2">對於長期處於資訊過載、認知疲勞狀態的我們來說，猴頭菇不僅是西方超級食物的熱門選擇，更像是一位沈穩的嚮導。它溫和地協助修復神經元之間的連結，不帶一絲勉強，讓疲憊的大腦在滋養中重新找回清晰與靈光。</p>
+          <p data-i18n="card.sunP3">搭配來自以色列的有機沙漠薄荷花草茶，其氣味清新而乾淨。與臺灣常見嗆辣辛澀的薄荷不同，來自以色列的原生種白香薄荷，在猶太文化中是餐後安定消化的靈魂要角。當焦慮的腸胃道被這股純粹的大地氣息溫柔包覆，神經系統調節的核心也才能隨之舒緩，為接下來的深度放鬆做好準備。</p>
+          <span class="cm-h" data-i18n="card.sunH2">🥣 頌缽聲波療癒｜思緒，交由頻率接手</span>
+          <p data-i18n="card.sunP4">頌缽產生的低頻聲波，透過純粹的物理共振作用於全身，引導腦波從清醒、緊繃的 β 波，緩緩過渡至深度放鬆的 α 波狀態。</p>
+          <p data-i18n="card.sunP5">透過專注於呼吸的起伏，頌缽的聲波將溫柔地層層洗滌，把散落的注意力與意識帶回自身當下的經驗。當身心在純粹的共振中徹底安定下來，我們才得以用更輕盈、敏銳的姿態，重新向外探索這個被感知洗刷過後的世界。</p>
+          <span class="cm-h" data-i18n="card.sunH3">✨ 意識的甦醒與重整</span>
+          <p data-i18n="card.sunP6">透過蕈菇草本的深層滋養，讓頌缽的頻率更輕易地傳導至全身每一處細胞。從裡到外，我們層層重置緊繃的神經系統，平息混亂的大腦。這是一個讓你重新梳理思緒、找回內在清明的午後。</p>
         </details>
-        <p class="card-end">在新的一週開始前，給大腦一次真正的重開機。</p>
+        <p class="card-end" data-i18n="card.sunEnd">將澄澈的心智，帶回日常的每一個瞬間。 🕊️</p>
       </div>
 
       <div class="card wed">
-        <h3 class="card-title">🌙 週間夜晚的全面放鬆</h3>
-        <p class="card-sub">每週三 19:30–21:30｜首場 6/24</p>
-        <p class="card-elements">蕈菇療癒：靈芝｜以色列花草茶：舒緩放鬆草本｜頌缽放鬆｜訊息卡引導</p>
-        <p class="card-desc">
-          靈芝在西方被歸類為適應原，讓陷入慢性壓力的神經系統重新校準。搭配清涼退火的舒緩花草茶，讓身體真正下班。
-        </p>
+        <h3 class="card-title" data-i18n="card.wedTitle">🌿 課程二｜週間夜晚的全面放鬆</h3>
+        <p class="card-sub" data-i18n="card.wedSub">每週三 19:30–21:30｜首場 6/24</p>
+        <p class="card-elements" data-i18n="card.wedEl">靈芝蕈菇飲｜以色列舒緩花草茶｜頌缽放鬆｜訊息卡引導</p>
+        <p class="card-desc" data-i18n="card.wedDesc">下班之後，身體似乎還遺留在辦公桌前。這不是比喻，而是現代人的真實處境。當慢性壓力使皮質醇長期維持在高位，交感神經系統便持續運作，讓身心在進入夜晚時仍在高速運轉。身體雖然停下來了，神經系統卻依然緊繃。這場體驗課程，是一場向內探索的安靜旅程，期望能溫柔地陪伴你在下班後的週間夜晚，重新建立與內在平靜的連結，找回切換至放鬆模式的本能，重置身心的秩序。</p>
         <details class="card-more">
-          <summary>閱讀完整介紹</summary>
-          <p>當身體出現了疲勞，即使大睡了一覺也無法恢復。那通常不是身體的問題，而是大腦及全身軀幹的神經系統還沒有從白天切換回來。</p>
-          <p>靈芝（Reishi）在西方被歸類為適應原（Adaptogen），與化學合成藥物最大的不同，這個成分不會強制你的身體往某個方向關機，而是根據你當下的狀態，幫助全身找回真正的平衡及全方位的放鬆。作為適應原的相關學術研究近年持續累積，讓處於備戰狀態的大腦下班，像是終於不用把工作帶回家的你，能夠真正的放空、放鬆。</p>
-          <p>以色列花草茶舒緩系列，溫潤且暖心的一杯，全方位放鬆身心靈，清涼退火、舒緩放鬆，讓身體慢慢靜下來。</p>
-          <p>透過蕈菇草本的滋養，讓頌缽的頻率傳導的更深入全身，從裡到外層層放鬆神經系統以及 reset 週間緊繃的大腦。</p>
+          <summary data-i18n="card.readMore">閱讀完整介紹</summary>
+          <span class="cm-h" data-i18n="card.wedH1">🍄 真菌修復｜靈芝與以色列舒緩花草茶</span>
+          <p data-i18n="card.wedP1">先喝一杯，重置緊繃的身體秩序。靈芝（Reishi）是西方整合醫學與功能性真菌領域中備受矚目的「適應原」（Adaptogen）。科學研究指出，其富含的三萜類化合物與多醣體活性成分，能協助身體在慢性壓力狀態下，重新找回自我調節與平衡的能力。</p>
+          <p data-i18n="card.wedP2">對於長期處於高壓、大腦無法關機的我們來說，靈芝不會強迫身體做出劇烈的改變，而是以一種超然而包容的姿態，溫柔地接住你當下的疲憊，讓透支的系統慢慢找回原本的節奏。這杯真菌飲品，正是這個夜晚切換心靈維度的起點。</p>
+          <p data-i18n="card.wedP3">搭配來自以色列的舒緩花草茶，氣味清涼退火且溫潤入口。與常見的草本茶不同，它帶著地中海獨特風土所孕育的乾燥大地氣息，安靜卻深具撫慰的份量。當忙碌了一整天的腸胃先安定下來，自律神經系統的核心也才能夠逐漸舒緩，讓身體真正跟著慢下來。</p>
+          <span class="cm-h" data-i18n="card.wedH2">🥣 頌缽聲波療癒｜思緒，交由頻率接手</span>
+          <p data-i18n="card.wedP4">頌缽產生的低頻聲波振動，透過純粹的物理共振，輕柔地穿透全身。它能引導腦波從清醒、緊繃的狀態，逐漸過渡至深度放鬆的意識層次。</p>
+          <p data-i18n="card.wedP5">透過專注於呼吸的感受，頌缽的聲波將層層釋放累積在筋膜與神經系統中的張力。當你將注意力與意識帶回到自身當下的經驗，你會在與頻率的共振中猛然發覺——自己原來已經很久，沒有體驗過如此輕盈、純粹的放鬆。</p>
+          <span class="cm-h" data-i18n="card.wedH3">✨ 帶領身心，溫柔降落</span>
+          <p data-i18n="card.wedP6">透過蕈菇草本的深層滋養，讓頌缽的頻率更輕易地傳導至全身每一處細胞。從裡到外，我們一起平息混亂的大腦，帶領身心進入一個更安定的維度。這是一個讓你找回自己、重新連結大地與寧靜的夜晚。</p>
         </details>
-        <p class="card-end">等等回家，好好睡覺。給週間繁忙的你，支撐接下來的工作天。</p>
+        <p class="card-end" data-i18n="card.wedEnd">回家。好好睡覺。 💤</p>
       </div>
 
-      <p class="card-note">小班制 4–6 人｜無瑜伽經驗可參加｜場地提供瑜伽墊</p>
+      <p class="card-note" data-i18n="card.note">小班制 4–6 人｜無瑜伽經驗可參加｜場地提供瑜伽墊</p>
     </div>
 
-    <h2 class="section-title">📋 每場活動流程（約 2 小時）</h2>
+    <h2 class="section-title" data-i18n="flow.title">📋 每場活動流程（約 1.5 小時）</h2>
     <div class="steps" style="margin-top:24px;">
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-body">
-          <p class="step-name">真菌療癒介紹<span class="step-time">（20 分）</span></p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="flow.s1">真菌療癒介紹<span class="step-time">（20 分）</span></p></div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-body">
-          <p class="step-name">蕈菇滴劑 ＋ 以色列花草茶<span class="step-time">（10 分）</span></p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="flow.s2">蕈菇滴劑 ＋ 以色列花草茶<span class="step-time">（10 分）</span></p></div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-body">
-          <p class="step-name">頌缽療癒<span class="step-time">（40 分）</span></p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="flow.s3">頌缽療癒<span class="step-time">（40 分）</span></p></div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <div class="step-body">
-          <p class="step-name">訊息卡引導<span class="step-time">（15 分）</span></p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="flow.s4">訊息卡引導<span class="step-time">（15 分）</span></p></div>
       </div>
       <div class="step">
         <div class="step-num done">5</div>
-        <div class="step-body">
-          <p class="step-name">體驗贈品｜蕈菇滴劑</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="flow.s5">體驗贈品｜蕈菇滴劑</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ════ Section 2 ════ -->
+  <!-- 地點與票價 -->
   <section class="section" aria-label="票價與報名流程">
-    <h2 class="section-title">活動地點</h2>
+    <h2 class="section-title" data-i18n="venue.title">活動地點</h2>
     <div class="venue-box">
-      <strong>放空男子－頌缽療癒工作室</strong><br><br>
-      📍 <strong>工作室地址</strong><br>
-      台中市中區平等街48號，萬吉利大樓內<br>
-      🔒 電梯需感應磁扣才能上樓，請於抵達後傳訊息通知，我們會下樓迎接你～<br><br>
-      📍 <strong>交通建議</strong><br>
-      建議搭乘台鐵至台中火車站，出站後步行約 10～15 分鐘即可抵達。<br>
-      或於台中火車站前搭乘公車，至「第二市場站」下車，步行約 3 分鐘。<br><br>
-      📍 <strong>停車資訊</strong><br>
-      附近收費停車場數量多、但價格略高，建議盡量避免自行開車，
-      或停車在【第二市場停車場】步行至工作室約 8 分鐘，較為經濟實惠。
+      <strong data-i18n="venue.name">放空男子－頌缽療癒工作室</strong><br><br>
+      📍 <strong data-i18n="venue.addrLabel">工作室地址</strong><br>
+      <span data-i18n="venue.addr">台中市中區平等街48號，萬吉利大樓內</span><br>
+      <span data-i18n="venue.fob">🔒 電梯需感應磁扣才能上樓，請於抵達後傳訊息通知，我們會下樓迎接你～</span><br><br>
+      📍 <strong data-i18n="venue.transitLabel">交通建議</strong><br>
+      <span data-i18n="venue.transit">建議搭乘台鐵至台中火車站，出站後步行約 10～15 分鐘即可抵達。或於台中火車站前搭乘公車，至「第二市場站」下車，步行約 3 分鐘。</span><br><br>
+      📍 <strong data-i18n="venue.parkLabel">停車資訊</strong><br>
+      <span data-i18n="venue.park">附近收費停車場數量多、但價格略高，建議盡量避免自行開車，或停在【第二市場停車場】步行至工作室約 8 分鐘，較為經濟實惠。</span>
     </div>
 
-    <h2 class="section-title">票價</h2>
-    <p class="section-lead">兩者皆含市值 NT$2,400 蕈菇療癒萃取組贈品</p>
+    <h2 class="section-title" data-i18n="price.title">暑假場票價</h2>
+    <p class="section-lead" data-i18n="price.lead">兩者皆含市值 NT$2,400 蕈菇療癒萃取組贈品</p>
     <div class="price-grid">
       <div class="price-card featured">
-        <span class="price-badge">最划算</span>
-        <p class="price-label">⚡ 早鳥票（開課前 14 日截止）</p>
+        <span class="price-badge" data-i18n="price.badge">最划算</span>
+        <p class="price-label" data-i18n="price.earlyLabel">⚡ 早鳥票（開課前 14 日截止）</p>
         <p class="price-amount">NT$2,800</p>
-        <p class="price-note">含 NT$2,400 贈品</p>
+        <p class="price-note" data-i18n="price.giftNote">含 NT$2,400 贈品</p>
       </div>
       <div class="price-card">
-        <p class="price-label">正常票</p>
+        <p class="price-label" data-i18n="price.normalLabel">正常票</p>
         <p class="price-amount">NT$3,000</p>
-        <p class="price-note">含 NT$2,400 贈品</p>
+        <p class="price-note" data-i18n="price.giftNote2">含 NT$2,400 贈品</p>
       </div>
     </div>
-
-    <div class="cal-wrap">
-      <h3 class="cal-title">活動日期</h3>
-      <div class="cal-legend">
-        <span><span class="dot sun"></span>☀ 感知冥想（週日）</span>
-        <span><span class="dot wed"></span>🌙 週間放鬆（週三）</span>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
-    </div>
-
     <div class="steps">
-      <h3 class="steps-title">報名流程</h3>
+      <h3 class="steps-title" data-i18n="reg.title">報名流程</h3>
       <div class="step">
         <div class="step-num" aria-hidden="true">1</div>
-        <div class="step-body">
-          <p class="step-name">填寫報名表單</p>
-          <p class="step-desc">完成本頁下方表單，不需先匯款。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s1n">填寫報名表單</p><p class="step-desc" data-i18n="reg.s1d">完成本頁下方表單，不需先匯款。</p></div>
       </div>
       <div class="step">
         <div class="step-num" aria-hidden="true">2</div>
-        <div class="step-body">
-          <p class="step-name">收取報名表單回信</p>
-          <p class="step-desc">2 個工作日內寄出確認匯款信至您的信箱。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s2n">收取報名表單回信</p><p class="step-desc" data-i18n="reg.s2d">2 個工作日內寄出確認匯款信至您的信箱。</p></div>
       </div>
       <div class="step">
         <div class="step-num" aria-hidden="true">3</div>
-        <div class="step-body">
-          <p class="step-name">完成匯款並填寫匯款資訊</p>
-          <p class="step-desc">依信中指示匯款，並回填匯款日期＋帳號後五碼。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s3n">完成匯款並填寫匯款資訊</p><p class="step-desc" data-i18n="reg.s3d">依信中指示匯款，並回填匯款日期＋帳號後五碼。</p></div>
       </div>
       <div class="step">
         <div class="step-num done" aria-hidden="true">4</div>
-        <div class="step-body">
-          <p class="step-name">收到匯款確認信，即完成報名 ✅</p>
-          <p class="step-desc">款項核對完成後寄出，報名正式成立。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s4n">收到匯款確認信，即完成報名 ✅</p><p class="step-desc" data-i18n="reg.s4d">款項核對完成後寄出，報名正式成立。</p></div>
       </div>
       <div class="step">
         <div class="step-num" aria-hidden="true">5</div>
-        <div class="step-body">
-          <p class="step-name">活動前通知信</p>
-          <p class="step-desc">活動前一週寄送行前提醒與場地資訊。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s5n">活動前通知信</p><p class="step-desc" data-i18n="reg.s5d">活動前一週寄送行前提醒與場地資訊。</p></div>
       </div>
       <div class="step">
         <div class="step-num" aria-hidden="true">6</div>
-        <div class="step-body">
-          <p class="step-name">活動現場見 🌿</p>
-          <p class="step-desc">帶著放鬆的心情前來即可。</p>
-        </div>
+        <div class="step-body"><p class="step-name" data-i18n="reg.s6n">活動現場見 🌿</p><p class="step-desc" data-i18n="reg.s6d">帶著放鬆的心情前來即可。</p></div>
       </div>
     </div>
 
     <div class="notice-box">
-      <p class="notice-title">注意事項</p>
+      <p class="notice-title" data-i18n="notice.title">注意事項</p>
       <ul>
-        <li>開課前 2 週取消：全額退費</li>
-        <li>未達 4 人開班：全額退費並另行通知</li>
-        <li>開課前 1 週個人因素取消：退款 50%</li>
-        <li>🍿 工作室禁止攜帶外食（零食與飲品不在此限）</li>
-        <li>🚭 室內全面禁菸，吸菸請至一樓戶外區域</li>
-        <li>⚠️ 若因突發狀況需延遲抵達，煩請提前通知我們～</li>
+        <li data-i18n="notice.l1">開課前 2 週取消：全額退費</li>
+        <li data-i18n="notice.l2">未達 4 人開班：全額退費並另行通知</li>
+        <li data-i18n="notice.l3">開課前 1 週個人因素取消：退款 50%</li>
+        <li data-i18n="notice.l4">🍿 工作室禁止攜帶外食（零食與飲品不在此限）</li>
+        <li data-i18n="notice.l5">🚭 室內全面禁菸，吸菸請至一樓戶外區域</li>
+        <li data-i18n="notice.l6">⚠️ 若因突發狀況需延遲抵達，煩請提前通知我們～</li>
       </ul>
     </div>
   </section>
 
-  <!-- ════ Section 3：贈品 ════ -->
+  <!-- 贈品 -->
   <section class="section" aria-label="活動贈品">
-    <h2 class="section-title">活動體驗贈品</h2>
-    <p class="section-lead">每位參加者皆可免費帶走</p>
+    <h2 class="section-title" data-i18n="gift.title">活動體驗贈品</h2>
+    <p class="section-lead" data-i18n="gift.lead">每位參加者皆可免費帶走</p>
     <div class="gift-card">
       <div class="gift-photo">
-        <img src="pic/gift_web.jpg" alt="蘑菇療癒萃取三入組：精力蟲草、猴頭菇、靈芝滴劑各 30ml">
+        <img src="pic/gift_web.jpg" alt="蘑菇療癒萃取三入組：精力、腦神經、睡眠放鬆滴劑各 30ml">
       </div>
       <div class="gift-body">
-        <h3 class="gift-title">🎁 蘑菇療癒萃取三入組</h3>
-        <p class="gift-desc">
-          精力蟲草 30ml ＋ 猴頭菇 30ml ＋ 靈芝 30ml<br>
+        <h3 class="gift-title" data-i18n="gift.name">🎁 蘑菇療癒萃取三入組</h3>
+        <p class="gift-desc" data-i18n="gift.desc">
+          精力 30ml ＋ 腦神經 30ml ＋ 睡眠放鬆 30ml<br>
           微生物、重金屬雙重檢驗合格｜純素 Vegan｜台灣製造
         </p>
-        <span class="gift-value">市值 NT$2,400，隨課程免費贈・非賣品</span>
+        <span class="gift-value" data-i18n="gift.value">市值 NT$2,400，隨課程免費贈・非賣品</span>
       </div>
     </div>
   </section>
 
-  <!-- ════ 關於我們 ════ -->
+  <!-- 關於我們 -->
   <section class="section" aria-label="關於我們">
-    <h2 class="section-title">關於我們</h2>
+    <h2 class="section-title" data-i18n="about.title">關於我們</h2>
     <div class="about-box">
-      <p class="about-name">蘑菇蕈息 Mycogen</p>
-      <p>
-        由來自以色列及台灣團隊組成的機能性蕈菇療癒品牌，我們以蘑菇與草藥為主要媒介，
-        結合東方中藥智慧、中東藥草魔法、加上西方生科技術，
-        打造提煉出針對睡眠、精力、感知三種不同面向的蘑菇萃取滴劑，
-        人體硬體性的升級，在城市中混亂的狀態裡重新找回與自然大地的平衡與連結 🍄
-      </p>
+      <p class="about-name" data-i18n="about.brand">蘑菇蕈息 Mycogen</p>
+      <p data-i18n="about.brandText">《蘑菇蕈息 Mycogen》由來自以色列及台灣團隊組成的機能性蕈菇療癒品牌，我們以蘑菇與草藥為主要媒介，結合東方及中東的中藥智慧、加上西方生科技術，打造提煉出針對睡眠、精力、腦神經三種不同面向的蘑菇萃取滴劑。提倡不再以化學藥物強控身體，以蕈菇及真菌草藥為本，讓身體重新順應自然，人體硬體性的升級，在城市中混亂的狀態裡重新找回與自然大地的平衡與連結 🍄🍃</p>
       <div class="about-links">
-        <a class="about-btn" href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener">💬 官方 LINE</a>
+        <a class="about-btn" href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener">💬 <span data-i18n="about.line">官方 LINE</span></a>
         <a class="about-btn" href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener">📷 Instagram</a>
-        <a class="about-btn" href="https://mycogenbiolife.com" target="_blank" rel="noopener">🌐 官方網站</a>
+        <a class="about-btn" href="https://mycogenbiolife.com" target="_blank" rel="noopener">🌐 <span data-i18n="about.web">官方網站</span></a>
       </div>
     </div>
 
     <div class="about-box">
-      <p class="about-name">療癒師介紹｜放空男子－頌缽療癒工作室</p>
-      <p>
-        致力於打造安定、安全的環境，讓參與者在繁忙生活中獲得片刻的靜心與放鬆。
-        在多位師者的啟發中，累積了多元的頌缽經驗與方法，透過聲音共振引導身心回到平衡，
-        陪伴大家釋放壓力、重整能量，體驗深度的寧靜與自在，一起感受全新的放空體驗。
-      </p>
+      <p class="about-name" data-i18n="about.healer">療癒師介紹｜放空男子－頌缽療癒工作室</p>
+      <p data-i18n="about.healerText">致力於打造安定、安全的環境，讓參與者在繁忙生活中獲得片刻的靜心與放鬆。在多位師者的啟發中，累積了多元的頌缽經驗與方法，透過聲音共振引導身心回到平衡，陪伴大家釋放壓力、重整能量，體驗深度的寧靜與自在，一起感受全新的放空體驗。</p>
       <ul class="cert-list">
         <li>Light Spirit－頌缽師認證</li>
         <li>Sound Medicine Academy－頌缽師認證</li>
-        <li>光音仙境－頌缽師認證</li>
-        <li>寶島漫缽－頌缽師認證</li>
-        <li>IICT 國際輔助治療師協會認證</li>
-        <li>CMA 聲音治療協會補充醫學協會認證</li>
+        <li data-i18n="about.cert3">光音仙境－頌缽師認證</li>
+        <li data-i18n="about.cert4">寶島漫缽－頌缽師認證</li>
+        <li data-i18n="about.cert5">IICT 國際輔助治療師協會認證</li>
+        <li data-i18n="about.cert6">CMA 聲音治療協會補充醫學協會認證</li>
       </ul>
     </div>
   </section>
 
-  <!-- ════ Section 4：報名表單 ════ -->
+  <!-- 報名表單 -->
   <section class="form-wrap" id="signup" aria-label="報名表單">
-    <h2 class="form-title">立即報名</h2>
-    <p class="form-sub">報名表單填寫後，我們將於 2 個工作日內寄出確認匯款信</p>
+    <h2 class="form-title" data-i18n="form.title">立即報名</h2>
+    <p class="form-sub" data-i18n="form.sub">報名表單填寫後，我們將於 2 個工作日內寄出確認匯款信</p>
+    <span class="form-mode-pill trial" id="formModePill" data-i18n="form.modeTrial">⚡ 目前開放：6/24・6/28 搶先體驗場（NT$2,500）</span>
 
     <form id="signupForm" novalidate>
 
       <div class="form-group">
-        <label class="form-label" for="f-name">姓名<span class="req" aria-hidden="true">*</span></label>
-        <input class="form-input" type="text" id="f-name" name="name" placeholder="請輸入您的姓名" autocomplete="name" required>
+        <label class="form-label" for="f-name" data-i18n="form.name">姓名<span class="req" aria-hidden="true">*</span></label>
+        <input class="form-input" type="text" id="f-name" name="name" placeholder="請輸入您的姓名" data-i18n-ph="form.namePh" autocomplete="name" required>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="f-phone">聯絡電話<span class="req" aria-hidden="true">*</span></label>
+        <label class="form-label" for="f-phone" data-i18n="form.phone">聯絡電話<span class="req" aria-hidden="true">*</span></label>
         <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="0912-345-678" autocomplete="tel" required>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="f-email">Email<span class="req" aria-hidden="true">*</span></label>
+        <label class="form-label" for="f-email" data-i18n="form.email">Email<span class="req" aria-hidden="true">*</span></label>
         <input class="form-input" type="email" id="f-email" name="email" placeholder="your@email.com" autocomplete="email" required>
-        <p class="field-hint">請填寫常用信箱——匯款信與所有通知信都將寄到這裡</p>
+        <p class="field-hint" data-i18n="form.emailHint">請填寫常用信箱——匯款信與所有通知信都將寄到這裡</p>
       </div>
 
       <fieldset class="form-group" style="border:none;">
-        <legend class="form-label">選擇場次<span class="req" aria-hidden="true">*</span></legend>
+        <legend class="form-label" data-i18n="form.pickSession">選擇場次<span class="req" aria-hidden="true">*</span></legend>
         <div class="session-picker">
           <div>
             <input class="session-option" type="radio" name="session" id="sess-sun" value="sun" required>
             <label class="session-label" for="sess-sun">
               <span class="session-emoji" aria-hidden="true">☀</span>
               <span>
-                <span class="session-name">全方位感知冥想</span><br>
-                <span class="session-time">每週日 14:00–16:00</span>
+                <span class="session-name" data-i18n="form.sunName">全方位感知冥想</span><br>
+                <span class="session-time" data-i18n="form.sunTime">週日場</span>
               </span>
             </label>
           </div>
@@ -916,318 +863,541 @@
             <label class="session-label" for="sess-wed">
               <span class="session-emoji" aria-hidden="true">🌙</span>
               <span>
-                <span class="session-name">週間夜晚的全面放鬆</span><br>
-                <span class="session-time">每週三 19:30–21:30</span>
+                <span class="session-name" data-i18n="form.wedName">週間夜晚的全面放鬆</span><br>
+                <span class="session-time" data-i18n="form.wedTime">週三場</span>
               </span>
             </label>
           </div>
         </div>
+        <p class="field-hint" data-i18n="form.sessionHint">提示：在下方月曆點選日期，也會自動幫您選好對應的場次。</p>
       </fieldset>
 
       <div class="form-group">
-        <label class="form-label" for="dateSelect">希望參加的日期<span class="req" aria-hidden="true">*</span></label>
-        <div class="form-select-wrap">
-          <select class="form-select" id="dateSelect" name="date" required>
-            <option value="" disabled selected>請先選擇場次</option>
-          </select>
+        <label class="form-label" data-i18n="form.pickDate">選擇日期（請於月曆點選）<span class="req" aria-hidden="true">*</span></label>
+        <div class="datecal-legend">
+          <span><span class="lg-dot sun"></span><span data-i18n="form.legSun">☀ 週日場</span></span>
+          <span><span class="lg-dot wed"></span><span data-i18n="form.legWed">🌙 週三場</span></span>
+          <span><span class="lg-dot trial"></span><span data-i18n="form.legTrial">⚡ 搶先體驗場</span></span>
         </div>
+        <div class="datecal" id="dateCal"></div>
+        <input type="hidden" id="dateValue" name="date" required>
+        <p class="datecal-picked" id="datePicked" role="status"></p>
         <p class="bird-msg" id="birdMsg" role="status"></p>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="date2Select">第二順位日期（選填）</label>
+        <label class="form-label" for="date2Select" data-i18n="form.date2">第二順位日期（選填）</label>
         <div class="form-select-wrap">
           <select class="form-select" id="date2Select" name="date2">
-            <option value="" selected>無（僅參加第一順位日期）</option>
+            <option value="" selected data-i18n="form.date2None">無（僅參加第一順位日期）</option>
           </select>
         </div>
-        <p class="field-hint">如原場次已額滿或未達開課人數，我們將以此日期與您聯繫</p>
+        <p class="field-hint" data-i18n="form.date2Hint">如原場次已額滿或未達開課人數，我們將以此日期與您聯繫</p>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="promoInput">優惠碼（選填）</label>
-        <input class="form-input" type="text" id="promoInput" name="promo" placeholder="若有優惠碼請填入" autocomplete="off">
+        <label class="form-label" for="promoInput" data-i18n="form.promo">優惠碼（選填）</label>
+        <input class="form-input" type="text" id="promoInput" name="promo" placeholder="若有優惠碼請填入" data-i18n-ph="form.promoPh" autocomplete="off">
         <p class="promo-msg" id="promoMsg" role="status"></p>
       </div>
 
       <div class="total-box">
-        <span class="total-label">應付金額
-          <span class="total-detail" id="totalDetail">請先選擇日期</span>
+        <span class="total-label" data-i18n="form.total">應付金額
+          <span class="total-detail" id="totalDetail" data-i18n="form.totalDetail">請先選擇日期</span>
         </span>
         <span class="total-amount" id="totalAmount">—</span>
       </div>
 
-      <div class="pay-later">
-        <strong>本表單不需先匯款。</strong>送出報名後 2 個工作日內，我們會將確認匯款信寄至您的 Email，
-        請依信中指示完成匯款並回填匯款資訊，收到匯款確認信後才算完成報名。
+      <div class="pay-later" data-i18n="form.payLater">
+        <strong>本表單不需先匯款。</strong>送出報名後 2 個工作日內，我們會將確認匯款信寄至您的 Email，請依信中指示完成匯款並回填匯款資訊，收到匯款確認信後才算完成報名。
       </div>
 
       <fieldset class="form-group" style="border:none;">
-        <legend class="form-label">是否已經是我們的官方 LINE 好友？</legend>
+        <legend class="form-label" data-i18n="form.lineQ">是否已經是我們的官方 LINE 好友？</legend>
         <div class="pill-picker">
           <div style="flex:1;display:flex;">
             <input class="pill-option" type="radio" name="line_friend" id="line-yes" value="是">
-            <label class="pill-label" for="line-yes">是，已加好友</label>
+            <label class="pill-label" for="line-yes" data-i18n="form.lineYes">是，已加好友</label>
           </div>
           <div style="flex:1;display:flex;">
             <input class="pill-option" type="radio" name="line_friend" id="line-no" value="否">
-            <label class="pill-label" for="line-no">還沒有</label>
+            <label class="pill-label" for="line-no" data-i18n="form.lineNo">還沒有</label>
           </div>
         </div>
         <p class="field-hint" id="lineHint" style="display:none;">
-          📲 點此加入官方 LINE 好友：<a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" style="color:var(--green);font-weight:700;">https://lin.ee/OqU56Jq</a>
+          📲 <span data-i18n="form.lineAdd">點此加入官方 LINE 好友：</span><a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" style="font-weight:700;">https://lin.ee/OqU56Jq</a>
         </p>
       </fieldset>
 
       <div class="form-group">
-        <label class="form-label" for="f-source">如何得知這個活動？</label>
+        <label class="form-label" for="f-source" data-i18n="form.source">如何得知這個活動？</label>
         <div class="form-select-wrap">
           <select class="form-select" id="f-source" name="source">
-            <option value="" disabled selected>請選擇</option>
+            <option value="" disabled selected data-i18n="form.sourcePick">請選擇</option>
             <option>Instagram / Facebook</option>
-            <option>朋友介紹</option>
-            <option>瑜伽教室公告</option>
-            <option>其他</option>
+            <option data-i18n="form.srcFriend">朋友介紹</option>
+            <option data-i18n="form.srcStudio">瑜伽教室公告</option>
+            <option data-i18n="form.srcOther">其他</option>
           </select>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="f-notes">身體狀況／備註</label>
-        <textarea class="form-textarea" id="f-notes" name="notes" placeholder="如有食物過敏、特殊身體狀況，或其他想讓我們知道的事，請填寫於此"></textarea>
+        <label class="form-label" for="f-notes" data-i18n="form.notes">身體狀況／備註</label>
+        <textarea class="form-textarea" id="f-notes" name="notes" placeholder="如有食物過敏、特殊身體狀況，或其他想讓我們知道的事，請填寫於此" data-i18n-ph="form.notesPh"></textarea>
       </div>
 
       <div class="form-group">
-        <label class="form-label">活動聲明與同意事項<span class="req" aria-hidden="true">*</span></label>
+        <label class="form-label" data-i18n="form.consent">活動聲明與同意事項<span class="req" aria-hidden="true">*</span></label>
         <div class="consent-box" tabindex="0">
-          <h4>活動聲明</h4>
-          <p>本活動為身心靈探索與感知體驗課程，結合功能性蕈菇草本飲品與頌缽聲波冥想，提供放鬆與自我覺察的體驗環境。活動中提供之飲品及贈品均為一般食品，非藥品或健康食品。本活動不具醫療、診斷、治療或預防任何疾病之效果，所有內容均不構成醫療建議，無法取代專業醫療評估或處置。</p>
-          <h4>參加前請確認</h4>
-          <p>參加本活動，即表示您確認以下事項：</p>
+          <h4 data-i18n="consent.h1">活動聲明</h4>
+          <p data-i18n="consent.p1">本活動為身心靈探索與感知體驗課程，結合功能性蕈菇草本飲品與頌缽聲波冥想，提供放鬆與自我覺察的體驗環境。活動中提供之飲品及贈品均為一般食品，非藥品或健康食品。本活動不具醫療、診斷、治療或預防任何疾病之效果，所有內容均不構成醫療建議，無法取代專業醫療評估或處置。</p>
+          <h4 data-i18n="consent.h2">參加前請確認</h4>
+          <p data-i18n="consent.p2">參加本活動，即表示您確認以下事項：</p>
           <ul>
-            <li>本活動為感知體驗課程，非醫療行為，不以此取代就醫或任何醫療處置</li>
-            <li>目前未處於急性疾病、住院或需持續接受醫療照護的狀態</li>
-            <li>對菇類（真菌）無已知過敏反應（活動飲品含猴頭菇、蟲草、靈芝萃取成分）</li>
-            <li>若有以下任一情形，請於上方「身體狀況／備註」欄告知，並建議事先諮詢醫師意見：
+            <li data-i18n="consent.li1">本活動為感知體驗課程，非醫療行為，不以此取代就醫或任何醫療處置</li>
+            <li data-i18n="consent.li2">目前未處於急性疾病、住院或需持續接受醫療照護的狀態</li>
+            <li data-i18n="consent.li3">對菇類（真菌）無已知過敏反應（活動飲品含猴頭菇、蟲草、靈芝萃取成分）</li>
+            <li data-i18n="consent.li4">若有以下任一情形，請於上方「身體狀況／備註」欄告知，並建議事先諮詢醫師意見：
               <ul>
-                <li>心臟病、高血壓、癲癇或其他心血管疾病</li>
-                <li>正在服用抗凝血劑、免疫抑制劑或其他長期處方藥物</li>
-                <li>精神科診斷（如重度憂鬱症、躁鬱症、思覺失調等）</li>
-                <li>懷孕中或哺乳期</li>
+                <li data-i18n="consent.li4a">心臟病、高血壓、癲癇或其他心血管疾病</li>
+                <li data-i18n="consent.li4b">正在服用抗凝血劑、免疫抑制劑或其他長期處方藥物</li>
+                <li data-i18n="consent.li4c">精神科診斷（如重度憂鬱症、躁鬱症、思覺失調等）</li>
+                <li data-i18n="consent.li4d">懷孕中或哺乳期</li>
               </ul>
             </li>
           </ul>
-          <h4>贈品說明與個資聲明</h4>
-          <p><strong>關於體驗贈品：</strong>隨課程贈送之蕈菇萃取三入組（精力蟲草、猴頭菇、靈芝各 30ml）為一般食品。依衛生福利部規定，不建議嬰幼兒、兒童、孕婦及真菌過敏者使用。</p>
-          <p><strong>關於退費：</strong>開課前 2 週取消可全額退費；開課前 1 週個人因素取消退款 50%；未達 4 人開班則全額退費並另行通知。</p>
-          <p><strong>關於個人資料：</strong>本表單蒐集之姓名、電話及 Email，僅供本次活動聯絡與管理使用，不作其他商業用途，並依《個人資料保護法》妥善保存與管理。</p>
+          <h4 data-i18n="consent.h3">贈品說明與個資聲明</h4>
+          <p data-i18n="consent.p3"><strong>關於體驗贈品：</strong>隨課程贈送之蕈菇萃取三入組（精力、腦神經、睡眠放鬆各 30ml）為一般食品。依衛生福利部規定，不建議嬰幼兒、兒童、孕婦及真菌過敏者使用。</p>
+          <p data-i18n="consent.p4"><strong>關於退費：</strong>開課前 2 週取消可全額退費；開課前 1 週個人因素取消退款 50%；未達 4 人開班則全額退費並另行通知。</p>
+          <p data-i18n="consent.p5"><strong>關於個人資料：</strong>本表單蒐集之姓名、電話及 Email，僅供本次活動聯絡與管理使用，不作其他商業用途，並依《個人資料保護法》妥善保存與管理。</p>
         </div>
         <label class="consent-check" for="f-agree">
           <input type="checkbox" id="f-agree" name="agree" required>
-          <span>我已詳細閱讀並同意上述「活動聲明」、「參加前請確認」與「贈品說明與個資聲明」之全部內容<span class="req" aria-hidden="true">*</span></span>
+          <span data-i18n="consent.agree">我已詳細閱讀並同意上述「活動聲明」、「參加前請確認」與「贈品說明與個資聲明」之全部內容<span class="req" aria-hidden="true">*</span></span>
         </label>
       </div>
 
-      <button class="submit-btn" type="submit">送出報名</button>
-      <p class="form-note">如有問題歡迎 IG 私訊 <a href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener" style="color:var(--green);">@mycogen.tw</a> 或 <a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" style="color:var(--green);">官方 LINE</a> 聯繫</p>
+      <button class="submit-btn" type="submit" data-i18n="form.submit">送出報名</button>
+      <p class="form-note"><span data-i18n="form.contact">如有問題歡迎 IG 私訊</span> <a href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener">@mycogen.tw</a> <span data-i18n="form.or">或</span> <a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" data-i18n="form.lineContact">官方 LINE</a> <span data-i18n="form.contact2">聯繫</span></p>
     </form>
 
-    <!-- ════ Section 5：送出成功 ════ -->
+    <!-- 成功頁 -->
     <div class="success" id="successMsg" role="status">
       <div class="s-icon" aria-hidden="true">🍄</div>
-      <p class="s-title">已收到您的報名！</p>
-      <p class="s-body">感謝您的填寫，我們將寄送報名匯款信件給您～</p>
-      <span class="s-warn">⚠ 請注意！目前尚未完成所有報名程序</span>
-      <p class="s-body">
-        請於收信後 <strong>2 個工作日內完成匯款</strong>，<br>
-        收到確認匯款信件後，方報名完成。<br>
-        活動前 1–2 週我們將再次寄送開課通知至您的信箱。
-      </p>
-      <span class="s-mail" id="successEmail">📧 信件將寄至您的 Email</span>
-      <p class="s-body">
-        如未收到信件，請查看垃圾郵件夾，<br>
-        或透過 IG <a href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener" style="color:var(--green);">@mycogen.tw</a>／<a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" style="color:var(--green);">官方 LINE</a> 與我們聯繫確認。
-      </p>
-      <p class="s-end">期待在療癒的空間裡與你相見 🌿<br>一起展開精彩的真菌旅程 🍄</p>
+      <p class="s-title" data-i18n="ok.title">已收到您的報名！</p>
+      <p class="s-body" data-i18n="ok.b1">感謝您的填寫，我們將寄送報名匯款信件給您～</p>
+      <span class="s-warn" data-i18n="ok.warn">⚠ 請注意！目前尚未完成所有報名程序</span>
+      <p class="s-body" data-i18n="ok.b2">請於收信後 <strong>2 個工作日內完成匯款</strong>，<br>收到確認匯款信件後，方報名完成。<br>活動前 1–2 週我們將再次寄送開課通知至您的信箱。</p>
+      <span class="s-mail" id="successEmail" data-i18n="ok.mail">📧 信件將寄至您的 Email</span>
+      <p class="s-body" data-i18n="ok.b3">如未收到信件，請查看垃圾郵件夾，或透過 IG ／官方 LINE 與我們聯繫確認。</p>
+      <p class="s-end" data-i18n="ok.end">期待在療癒的空間裡與你相見 🌿<br>一起展開精彩的真菌旅程 🍄</p>
     </div>
   </section>
 
 </main>
 
 <footer class="footer">
-  <strong>主辦單位｜蘑菇蕈息 Mycogen</strong>
+  <strong data-i18n="foot.host">主辦單位｜蘑菇蕈息 Mycogen</strong>
   <div class="f-links">
-    Official LINE｜<a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener" style="color:#fff;">lin.ee/OqU56Jq</a><br>
-    Instagram｜<a href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener" style="color:#fff;">@mycogen.tw</a><br>
-    官網｜<a href="https://mycogenbiolife.com" target="_blank" rel="noopener" style="color:#fff;">mycogenbiolife.com</a>
+    Official LINE｜<a href="https://lin.ee/OqU56Jq" target="_blank" rel="noopener">lin.ee/OqU56Jq</a><br>
+    Instagram｜<a href="https://www.instagram.com/mycogen.tw" target="_blank" rel="noopener">@mycogen.tw</a><br>
+    <span data-i18n="foot.webLabel">官網</span>｜<a href="https://mycogenbiolife.com" target="_blank" rel="noopener">mycogenbiolife.com</a>
   </div>
   <div class="f-co">
-    協辦單位｜放空男子瑜伽工作室<br>
-    微生物、重金屬雙重檢驗合格｜合法食品登錄字號｜純素 Vegan｜台灣製造<br>
+    <span data-i18n="foot.co">協辦單位｜放空男子瑜伽工作室</span><br>
+    <span data-i18n="foot.cert">微生物、重金屬雙重檢驗合格｜合法食品登錄字號｜純素 Vegan｜台灣製造</span><br>
     © 2026 蘑菇蕈息 Mycogen
   </div>
 </footer>
-
 <script>
-  // ════ 後台設定 ════
-  // 部署 Google Apps Script 後，把網頁應用程式 URL 貼到下方
+  // ════ 後台設定（請勿更動，除非更換 Apps Script 部署網址） ════
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxBwiqycxhaWklgcU5B0Oahr92xLgSISfE_yti-os2xxGARDEJjPcFCk3z4u97_hwjZ/exec';
 
-  // 優惠碼（不分大小寫，可自行增減）
   const PROMO_CODES = ['MYCO26'];
-  const PRICE = { early: 2800, normal: 3000, promo: 2500 };
-  const EARLY_DAYS = 14; // 早鳥截止：開課前 14 日
+  const PRICE = { early: 2800, normal: 3000, trial: 2500, promo: 2500 };
+  const EARLY_DAYS = 14;
+  const TRIAL_DATES = ['2026-06-24','2026-06-28'];
+  const TRIAL_CUTOFF = '2026-07-01';
 
   const SESSIONS = {
-    sun: { icon: '☀', name: '全方位感知冥想（週日）', dates: ['2026-06-28','2026-07-05','2026-07-12','2026-07-26','2026-08-02','2026-08-09','2026-08-16','2026-08-30'] },
+    sun: { icon: '☀', name: '全方位冥想感知修復（週日）', dates: ['2026-06-28','2026-07-05','2026-07-12','2026-07-26','2026-08-02','2026-08-09','2026-08-16','2026-08-30'] },
     wed: { icon: '🌙', name: '週間夜晚的全面放鬆（週三）', dates: ['2026-06-24','2026-07-01','2026-07-08','2026-07-29','2026-08-05','2026-08-12','2026-08-26'] }
   };
-  const WEEK = ['日','一','二','三','四','五','六'];
+  const EVMAP = {};
+  SESSIONS.sun.dates.forEach(d => EVMAP[d] = 'sun');
+  SESSIONS.wed.dates.forEach(d => EVMAP[d] = 'wed');
 
-  const dateSelect = document.getElementById('dateSelect');
+  const TICKETS = {
+    early:  { zh: '早鳥票',     en: 'Early Bird' },
+    normal: { zh: '正常票',     en: 'Standard' },
+    trial:  { zh: '搶先體驗場', en: 'Preview Session' },
+    promo:  { zh: '優惠碼價',   en: 'Promo Price' }
+  };
+
+  const WEEK_ZH = ['日','一','二','三','四','五','六'];
+  const WEEK_EN = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  const DOW_EN  = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const MON_EN  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  // ════ 動態訊息字串 ════
+  const STR = {
+    earlyOk:  { zh: '⚡ 早鳥價 NT$2,800 適用中（開課前 14 日截止）', en: '⚡ Early-bird NT$2,800 applies (until 14 days before)' },
+    late:     { zh: '早鳥已截止，票價為 NT$3,000', en: 'Early-bird ended — price is NT$3,000' },
+    trial:    { zh: '⚡ 搶先體驗場優惠價 NT$2,500', en: '⚡ Preview-session price NT$2,500' },
+    promoOk:  { zh: '✓ 優惠碼適用！折扣後金額 NT$2,500', en: '✓ Promo applied! Total NT$2,500' },
+    promoNo:  { zh: '此優惠碼無效，將以原票價計算', en: 'Invalid promo — original price applies' },
+    pickDate: { zh: '請先選擇日期', en: 'Please select a date first' },
+    gift:     { zh: '・含 NT$2,400 贈品', en: ' · incl. NT$2,400 gift' },
+    pickedPre:{ zh: '已選日期：', en: 'Selected: ' },
+    needDate: { zh: '請先於月曆選擇日期', en: 'Please pick a date on the calendar' },
+    none:     { zh: '無（僅參加第一順位日期）', en: 'None (first choice only)' }
+  };
+  function S(k){ return STR[k][LANG === 'en' ? 'en' : 'zh']; }
+
+  // ════ 英文翻譯字典 ════
+  const EN = {
+    'hero.tag': 'Mushroom Healing Workshop｜Your first mycology journey',
+    'hero.title': 'Mushroom Healing Experience',
+    'hero.formula': '<b>Mushroom Repair</b><span class="plus">＋</span><b>Sound-Bowl Healing</b>',
+    'hero.tagline': 'A restorative journey through mycelial networks and sound resonance',
+    'hero.cta': 'Register Now',
+    'info.dateLabel': 'DATE 日期', 'info.dateValue': 'Summer 2026<br>Jun – Aug',
+    'info.timeLabel': 'LENGTH 時長', 'info.timeValue': 'About<br>1.5 hours',
+    'info.placeLabel': 'PLACE 地點', 'info.placeValue': 'Taichung<br>Sound-Bowl Studio',
+    'trial.flag': '⚡ Next week · Preview Sessions',
+    'trial.title': 'Try it before the summer sessions begin',
+    'trial.desc': 'Before the summer series launches, we open two limited preview sessions. Preview price <span class="trial-price"><s>NT$2,800</s>NT$2,500</span>, still including the NT$2,400 mushroom extract trio gift.',
+    'trial.d1date': 'Jun 24 (Wed)', 'trial.d1time': '19:00 – 21:00', 'trial.d1name': '🌙 Full Evening Relaxation · Reishi',
+    'trial.d2date': 'Jun 28 (Sun)', 'trial.d2time': '15:00 – 17:00', 'trial.d2name': '☀ Whole-Sense Meditation · Lion’s Mane',
+    'trial.cta': 'Register for a Preview Session →',
+    'intro.title': 'About the Workshop',
+    'intro.p1': 'A body that has stayed too long in the city needs a real rest.<br>This is an experience blending functional-mushroom drinks with sound-bowl healing, about 1.5 hours per session—',
+    'intro.quote': 'Begins with the earth, ends with the inner voice.',
+    'intro.p2': 'Starting from a mushroom-herbal drink of the earth, we reconnect the body’s network with nature; within the resonance of the singing bowls, sound and breath release tension; finally a message card lets you carry home your own mycelial breath.',
+    'intro.moreSummary': 'Learn more｜About Mycotherapy',
+    'intro.more1': 'Fungi have existed on Earth for over 400 million years — older than plants, learning to survive here before animals, spreading and connecting the planet, life and the cosmos through the soil.',
+    'intro.more2': 'Mycologist Paul Stamets calls the mycelial network the nervous system of the earth. Humans once thought of themselves as separate individuals, forgetting that part of the body has long known how to converse with this planet.',
+    'intro.more3': 'In recent years functional mycotherapy has drawn growing attention in Western integrative medicine — a wave of mushroom fascination among scientists, rediscovering small but ancient knowledge.',
+    'intro.more4': 'Mycogen partners with a sound-bowl studio, combining two of the four elements — the mycelial network of the earth and the sound resonance of the air — for whole-being care from the inside out.',
+    'intro.more5': 'Beyond a first taste of mycotherapy, this session offers a full introductory experience: functional fungal drops open the body’s receptive state, paired with Israeli herbal tea, then sound bowls guide consciousness into deeper stillness, closing with a message card so each person leaves with their own answer.',
+    'card.sunTitle': '🌿 Course One｜Whole-Sense Meditation & Restoration', 'card.sunSub': 'Sundays 14:00–16:00｜First session 6/28',
+    'card.sunEl': 'Lion’s Mane mushroom drink｜Israeli desert-mint tea｜Sound-bowl meditation｜Message-card guidance',
+    'card.sunDesc': 'A dulling mind is never a question of how clever you are. When the autonomic nervous system stays dominated by the sympathetic branch, the body loses touch with its instinct to relax. This experience is a gentle inward journey — to help you rediscover the “switch” that resets your inner order and find a quiet, lucid dimension amid the noise of daily life.',
+    'card.readMore': 'Read full description',
+    'card.sunH1': '🍄 Fungal restoration｜Lion’s Mane & organic Israeli desert-mint herbal tea',
+    'card.sunP1': 'First, a cup to rebuild the brain’s pathways of clarity. Lion’s Mane is a functional fungus drawing growing attention in neuroscience. Research suggests its active compounds stimulate Nerve Growth Factor (NGF) — a key protein for neuron health and strong neural networks, important for learning, memory and cognition.',
+    'card.sunP2': 'For those of us in chronic information overload and cognitive fatigue, Lion’s Mane is not just a trendy Western superfood but a steady guide. It gently helps repair the connections between neurons, letting a tired brain find its clarity and spark again — without any force.',
+    'card.sunP3': 'Paired with organic Israeli desert-mint herbal tea, fresh and clean in aroma. Unlike the sharp, astringent mint common in Taiwan, this native Israeli white mint is, in Jewish culture, a soul ingredient for settling digestion after meals. As an anxious gut is wrapped in this pure earthy scent, the core of nervous-system regulation can ease too, preparing you for deep relaxation.',
+    'card.sunH2': '🥣 Sound-bowl healing｜let frequency take over your thoughts',
+    'card.sunP4': 'The low-frequency sound waves of the singing bowls act on the whole body through pure physical resonance, guiding brainwaves from alert, tense β-waves into deeply relaxed α-waves.',
+    'card.sunP5': 'By focusing on the rise and fall of the breath, the sound waves gently wash over you layer by layer, bringing scattered attention and awareness back to your present experience. Once body and mind settle fully in pure resonance, you can re-explore this freshly-perceived world with a lighter, sharper presence.',
+    'card.sunH3': '✨ The awakening and reordering of consciousness',
+    'card.sunP6': 'Through the deep nourishment of fungi and herbs, the bowls’ frequencies travel more easily to every cell. From the inside out, we reset a tense nervous system layer by layer and calm a chaotic mind. This is an afternoon to reorganise your thoughts and recover inner clarity.',
+    'card.sunEnd': 'Carry a clear mind back into every moment of daily life. 🕊️',
+    'card.wedTitle': '🌿 Course Two｜Full Mid-Week Evening Relaxation', 'card.wedSub': 'Wednesdays 19:30–21:30｜First session 6/24',
+    'card.wedEl': 'Reishi mushroom drink｜Israeli soothing herbal tea｜Sound-bowl relaxation｜Message-card guidance',
+    'card.wedDesc': 'After work, the body seems to stay behind at the desk. This is not a metaphor but the reality of modern life. When chronic stress keeps cortisol high, the sympathetic nervous system keeps running, so body and mind stay in overdrive into the night. The body has stopped, but the nervous system is still tense. This experience is a quiet inward journey — to gently accompany you on a mid-week evening, rebuild your connection with inner calm, recover the instinct to switch into relaxation mode, and reset the order of body and mind.',
+    'card.wedH1': '🍄 Fungal restoration｜Reishi & Israeli soothing herbal tea',
+    'card.wedP1': 'First, a cup to reset a tense body. Reishi is an “adaptogen” drawing attention in Western integrative medicine and functional-fungi research. Its triterpenes and polysaccharides are said to help the body recover self-regulation and balance under chronic stress.',
+    'card.wedP2': 'For those of us under lasting pressure, with a brain that won’t switch off, Reishi doesn’t force a drastic change — it holds your current fatigue with a calm, accommodating presence, letting an overdrawn system slowly find its rhythm again. This fungal drink is where the evening’s shift of inner dimension begins.',
+    'card.wedP3': 'Paired with an Israeli soothing herbal tea, cooling and gently warming on the palate. Unlike common herbal teas, it carries the dry, earthy character of the Mediterranean terroir — quiet yet deeply comforting. As a day-long busy gut settles first, the core of the autonomic nervous system can gradually ease, letting the body truly slow down.',
+    'card.wedH2': '🥣 Sound-bowl healing｜let frequency take over your thoughts',
+    'card.wedP4': 'The low-frequency vibrations of the singing bowls pass gently through the whole body via pure physical resonance, guiding brainwaves from an alert, tense state toward deeply relaxed levels of awareness.',
+    'card.wedP5': 'By focusing on the sensation of the breath, the sound waves release the tension stored in fascia and nervous system, layer by layer. As you bring attention and awareness back to your present experience, you may suddenly realise — in the resonance of frequency — how long it has been since you felt this light, pure relaxation.',
+    'card.wedH3': '✨ Guiding body and mind to a gentle landing',
+    'card.wedP6': 'Through the deep nourishment of fungi and herbs, the bowls’ frequencies travel more easily to every cell. From the inside out, we calm a chaotic mind together and lead body and mind into a steadier dimension. This is an evening to find yourself again and reconnect with the earth and with stillness.',
+    'card.wedEnd': 'Go home. Sleep well. 💤',
+    'card.note': 'Small group of 4–6｜No yoga experience needed｜Mats provided',
+    'flow.title': '📋 Each session’s flow (about 1.5 hours)',
+    'flow.s1': 'Intro to mycotherapy<span class="step-time"> (20 min)</span>',
+    'flow.s2': 'Mushroom drops + Israeli herbal tea<span class="step-time"> (10 min)</span>',
+    'flow.s3': 'Sound-bowl healing<span class="step-time"> (40 min)</span>',
+    'flow.s4': 'Message-card guidance<span class="step-time"> (15 min)</span>',
+    'flow.s5': 'Gift｜Mushroom extract drops',
+    'venue.title': 'Location', 'venue.name': 'Fang-Kong Men · Sound-Bowl Healing Studio',
+    'venue.addrLabel': 'Address', 'venue.addr': 'Wanjili Building, No. 48 Pingdeng St., Central Dist., Taichung',
+    'venue.fob': '🔒 The elevator needs a key fob — please message us when you arrive and we’ll come down to meet you.',
+    'venue.transitLabel': 'Getting there', 'venue.transit': 'Take the train to Taichung Station; a 10–15 min walk. Or take a bus from the station to “Second Market” stop, then a 3 min walk.',
+    'venue.parkLabel': 'Parking', 'venue.park': 'Paid lots nearby are plentiful but pricey; driving is best avoided. “Second Market Parking” is an 8 min walk and more economical.',
+    'price.title': 'Summer Session Pricing', 'price.lead': 'Both include the NT$2,400 mushroom extract gift set',
+    'price.badge': 'Best value', 'price.earlyLabel': '⚡ Early bird (until 14 days before)', 'price.giftNote': 'incl. NT$2,400 gift',
+    'price.normalLabel': 'Standard', 'price.giftNote2': 'incl. NT$2,400 gift',
+    'reg.title': 'How to Register',
+    'reg.s1n': 'Fill in the form', 'reg.s1d': 'Complete the form below — no payment needed yet.',
+    'reg.s2n': 'Receive our reply', 'reg.s2d': 'We email payment details within 2 business days.',
+    'reg.s3n': 'Pay & report payment', 'reg.s3d': 'Transfer per the email, then reply with date + last 5 digits.',
+    'reg.s4n': 'Get confirmation = registered ✅', 'reg.s4d': 'Sent once payment is verified; registration is then final.',
+    'reg.s5n': 'Pre-event notice', 'reg.s5d': 'Reminders and venue info sent a week before.',
+    'reg.s6n': 'See you there 🌿', 'reg.s6d': 'Just come with a relaxed heart.',
+    'notice.title': 'Notes',
+    'notice.l1': 'Cancel 2+ weeks before: full refund',
+    'notice.l2': 'Fewer than 4 people: full refund, rescheduled',
+    'notice.l3': 'Cancel within 1 week (personal): 50% refund',
+    'notice.l4': '🍿 No outside food in the studio (snacks & drinks excepted)',
+    'notice.l5': '🚭 No smoking indoors — please use the ground-floor outdoor area',
+    'notice.l6': '⚠️ If you’ll be late due to an emergency, please let us know in advance.',
+    'gift.title': 'Experience Gift', 'gift.lead': 'Free for every participant to take home',
+    'gift.name': '🎁 Mushroom Extract Trio',
+    'gift.desc': 'Energy 30ml ＋ Brain & Nerve 30ml ＋ Sleep & Relax 30ml<br>Microbial & heavy-metal tested｜Vegan｜Made in Taiwan',
+    'gift.value': 'Valued NT$2,400 · free with the course · not for sale',
+    'about.title': 'About Us', 'about.brand': 'Mycogen',
+    'about.brandText': 'Mycogen is a functional-mushroom healing brand built by an Israeli and Taiwanese team. Using mushrooms and herbs as our main medium, we combine Eastern and Middle-Eastern herbal-medicine wisdom with Western biotech to craft extract drops for three needs: sleep, energy, and brain & nerves. We advocate no longer forcibly controlling the body with chemical drugs — grounded in mushrooms and fungal herbs, letting the body realign with nature, a hardware-level upgrade for the human body, rediscovering balance and connection with the earth amid the chaos of city life 🍄🍃',
+    'about.line': 'Official LINE', 'about.web': 'Website',
+    'about.healer': 'About the Healer｜Fang-Kong Men Sound-Bowl Studio',
+    'about.healerText': 'Dedicated to creating a calm, safe space where participants find moments of stillness amid busy life. Drawing on many teachers, accumulating diverse sound-bowl methods, guiding body and mind back to balance through sound resonance — releasing stress, restoring energy, and experiencing deep ease together.',
+    'about.cert3': 'Guang-Yin Wonderland — Sound-bowl certification',
+    'about.cert4': 'Baodao Manbo — Sound-bowl certification',
+    'about.cert5': 'IICT International Complementary Therapists certification',
+    'about.cert6': 'CMA Sound Therapy / Complementary Medicine certification',
+    'form.modeTrial': '⚡ Now open: 6/24 & 6/28 preview sessions (NT$2,500)',
+    'form.title': 'Register Now', 'form.sub': 'After you submit, we’ll email payment details within 2 business days',
+    'form.name': 'Name<span class="req" aria-hidden="true">*</span>', 'form.namePh': 'Your name',
+    'form.phone': 'Phone<span class="req" aria-hidden="true">*</span>',
+    'form.email': 'Email<span class="req" aria-hidden="true">*</span>',
+    'form.emailHint': 'Use an active inbox — payment and all notices go here',
+    'form.pickSession': 'Choose a session<span class="req" aria-hidden="true">*</span>',
+    'form.sunName': 'Whole-Sense Meditation', 'form.sunTime': 'Sunday session',
+    'form.wedName': 'Full Evening Relaxation', 'form.wedTime': 'Wednesday session',
+    'form.sessionHint': 'Tip: picking a date on the calendar below also selects the matching session for you.',
+    'form.pickDate': 'Choose a date (tap on the calendar)<span class="req" aria-hidden="true">*</span>',
+    'form.legSun': '☀ Sunday', 'form.legWed': '🌙 Wednesday', 'form.legTrial': '⚡ Preview',
+    'form.date2': 'Second-choice date (optional)', 'form.date2None': 'None (first choice only)',
+    'form.date2Hint': 'If your session is full or under-subscribed, we’ll contact you about this date',
+    'form.promo': 'Promo code (optional)', 'form.promoPh': 'Enter a promo code if you have one',
+    'form.total': 'Amount due', 'form.totalDetail': 'Please select a date first',
+    'form.payLater': '<strong>No payment needed on this form.</strong> Within 2 business days of submitting, we email payment details to your inbox; follow them, report your payment, and registration is complete once we send the confirmation.',
+    'form.lineQ': 'Are you already our official LINE friend?',
+    'form.lineYes': 'Yes, already added', 'form.lineNo': 'Not yet',
+    'form.lineAdd': 'Tap to add our official LINE: ',
+    'form.source': 'How did you hear about this?', 'form.sourcePick': 'Please choose',
+    'form.srcFriend': 'Friend referral', 'form.srcStudio': 'Yoga studio notice', 'form.srcOther': 'Other',
+    'form.notes': 'Health notes / remarks', 'form.notesPh': 'Allergies, special conditions, or anything you’d like us to know',
+    'form.consent': 'Statement & consent<span class="req" aria-hidden="true">*</span>',
+    'form.submit': 'Submit registration',
+    'form.contact': 'Questions? DM us on IG', 'form.or': 'or', 'form.lineContact': 'official LINE', 'form.contact2': '.',
+    'consent.h1': 'Event statement',
+    'consent.p1': 'This is a mind-body exploration and sensory experience course combining functional mushroom-herbal drinks with sound-bowl meditation, offering a relaxing, self-aware environment. Drinks and gifts are general foods, not drugs or health foods. This activity has no medical, diagnostic, treatment or disease-prevention effect; nothing here is medical advice or a substitute for professional medical evaluation.',
+    'consent.h2': 'Before you join, please confirm',
+    'consent.p2': 'By joining, you confirm the following:',
+    'consent.li1': 'This is a sensory experience course, not a medical act, and does not replace medical care.',
+    'consent.li2': 'You are not currently in an acute illness, hospitalized, or needing continuous medical care.',
+    'consent.li3': 'You have no known allergy to fungi (drinks contain Lion’s Mane, Cordyceps, Reishi extracts).',
+    'consent.li4': 'If any of the following apply, note it in “Health notes” above and consult a doctor first:',
+    'consent.li4a': 'Heart disease, hypertension, epilepsy or other cardiovascular conditions',
+    'consent.li4b': 'Taking anticoagulants, immunosuppressants or other long-term prescriptions',
+    'consent.li4c': 'Psychiatric diagnosis (e.g. major depression, bipolar, schizophrenia)',
+    'consent.li4d': 'Pregnant or breastfeeding',
+    'consent.h3': 'Gift & privacy statement',
+    'consent.p3': '<strong>About the gift:</strong> The mushroom extract trio (Energy, Brain & Nerve, Sleep & Relax, 30ml each) is a general food. Per health-authority guidance, not recommended for infants, children, pregnant women, or those allergic to fungi.',
+    'consent.p4': '<strong>Refunds:</strong> Full refund if cancelled 2+ weeks before; 50% if cancelled within 1 week for personal reasons; full refund if fewer than 4 enroll.',
+    'consent.p5': '<strong>Personal data:</strong> The name, phone and email collected are used only for this event’s contact and management, for no other commercial use, and stored per Taiwan’s Personal Data Protection Act.',
+    'consent.agree': 'I have read and agree to the “Event statement”, “Before you join” and “Gift & privacy statement” in full<span class="req" aria-hidden="true">*</span>',
+    'ok.title': 'We’ve received your registration!',
+    'ok.b1': 'Thank you — we’ll email you the payment details.',
+    'ok.warn': '⚠ Note: your registration is not yet complete',
+    'ok.b2': 'Please <strong>pay within 2 business days</strong> of receiving the email.<br>Registration is complete only after our confirmation email.<br>We’ll send a class notice 1–2 weeks before the event.',
+    'ok.mail': '📧 The email will be sent to your inbox',
+    'ok.b3': 'If you don’t see it, check your spam folder, or reach us via IG / official LINE.',
+    'ok.end': 'We look forward to meeting you in the healing space 🌿<br>Let’s begin a wonderful fungal journey 🍄',
+    'foot.host': 'Organizer｜Mycogen', 'foot.webLabel': 'Website',
+    'foot.co': 'Co-host｜Fang-Kong Men Yoga Studio',
+    'foot.cert': 'Microbial & heavy-metal tested｜Licensed food registration｜Vegan｜Made in Taiwan'
+  };
+
+  // ════ i18n 引擎 ════
+  let LANG = 'zh';
+  function captureZh(){
+    document.querySelectorAll('[data-i18n]').forEach(n => { n.dataset._zh = n.innerHTML; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(n => { n.dataset._phzh = n.getAttribute('placeholder') || ''; });
+  }
+  function setLang(l){
+    LANG = (l === 'en') ? 'en' : 'zh';
+    document.documentElement.lang = (LANG === 'en') ? 'en' : 'zh-Hant';
+    document.getElementById('btn-zh').classList.toggle('active', LANG === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', LANG === 'en');
+    document.querySelectorAll('[data-i18n]').forEach(n => {
+      const k = n.getAttribute('data-i18n');
+      n.innerHTML = (LANG === 'en' && EN[k] !== undefined) ? EN[k] : n.dataset._zh;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(n => {
+      const k = n.getAttribute('data-i18n-ph');
+      n.setAttribute('placeholder', (LANG === 'en' && EN[k] !== undefined) ? EN[k] : n.dataset._phzh);
+    });
+    try { localStorage.setItem('myco_lang', LANG); } catch(e){}
+    // 重新渲染動態區塊
+    renderModePill();
+    renderDateCal();
+    refreshPicked();
+    refreshBird();
+    fillDate2();
+    updateTotal();
+  }
+
+  // ════ 工具函式 ════
+  const dateValueEl = document.getElementById('dateValue');
   const date2Select = document.getElementById('date2Select');
   const birdMsg = document.getElementById('birdMsg');
   const promoInput = document.getElementById('promoInput');
   const promoMsg = document.getElementById('promoMsg');
   const totalAmount = document.getElementById('totalAmount');
   const totalDetail = document.getElementById('totalDetail');
+  let selectedISO = '';
 
-  function today0() { const d = new Date(); d.setHours(0,0,0,0); return d; }
-  function isEarly(iso) {
-    const ev = new Date(iso + 'T00:00:00');
-    const dl = new Date(ev); dl.setDate(dl.getDate() - EARLY_DAYS);
-    return today0() <= dl;
+  function today0(){ const d = new Date(); d.setHours(0,0,0,0); return d; }
+  function isEarly(iso){ const ev = new Date(iso + 'T00:00:00'); const dl = new Date(ev); dl.setDate(dl.getDate() - EARLY_DAYS); return today0() <= dl; }
+  function isFuture(iso){ return new Date(iso + 'T23:59:59') >= new Date(); }
+  function isPromo(v){ return PROMO_CODES.includes((v||'').trim().toUpperCase()); }
+  function fmt(iso){ const d = new Date(iso + 'T00:00:00'); const dow = d.getDay();
+    return (LANG === 'en')
+      ? (d.getMonth()+1) + '/' + d.getDate() + ' (' + DOW_EN[dow] + ')'
+      : (d.getMonth()+1) + '/' + d.getDate() + '（' + WEEK_ZH[dow] + '）';
   }
-  function isFuture(iso) { return new Date(iso + 'T23:59:59') >= new Date(); }
-  function fmt(iso) {
-    const d = new Date(iso + 'T00:00:00');
-    return (d.getMonth()+1) + '/' + d.getDate() + '（' + WEEK[d.getDay()] + '）';
-  }
-  function isPromo(v) { return PROMO_CODES.includes(v.trim().toUpperCase()); }
+  function fmtZh(iso){ const d = new Date(iso + 'T00:00:00'); return (d.getMonth()+1) + '/' + d.getDate() + '（' + WEEK_ZH[d.getDay()] + '）'; }
 
-  // ── 日曆渲染（6–8 月） ──
-  (function renderCalendars() {
-    const grid = document.getElementById('calGrid');
-    const evMap = {};
-    SESSIONS.sun.dates.forEach(d => evMap[d] = 'sun');
-    SESSIONS.wed.dates.forEach(d => evMap[d] = 'wed');
+  // ════ 月曆式日期選擇 ════
+  function renderDateCal(){
+    const wrap = document.getElementById('dateCal');
+    wrap.innerHTML = '';
+    const wk = (LANG === 'en') ? WEEK_EN : WEEK_ZH;
     [[2026,6],[2026,7],[2026,8]].forEach(([y,m]) => {
       const first = new Date(y, m-1, 1);
       const days = new Date(y, m, 0).getDate();
-      let html = '<div class="cal"><h4>' + y + ' 年 ' + m + ' 月</h4><table><thead><tr>';
-      WEEK.forEach(w => html += '<th scope="col">' + w + '</th>');
-      html += '</tr></thead><tbody><tr>';
-      for (let i = 0; i < first.getDay(); i++) html += '<td></td>';
+      const head = (LANG === 'en') ? (MON_EN[m-1] + ' ' + y) : (y + ' 年 ' + m + ' 月');
+      let h = '<div class="datecal-month"><h4>' + head + '</h4><table><thead><tr>';
+      wk.forEach(w => h += '<th scope="col">' + w + '</th>');
+      h += '</tr></thead><tbody><tr>';
+      for (let i = 0; i < first.getDay(); i++) h += '<td></td>';
       for (let d = 1; d <= days; d++) {
         const iso = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
         const dow = new Date(y, m-1, d).getDay();
+        const ev = EVMAP[iso];
         let cls = '';
-        if (evMap[iso]) cls = isFuture(iso) ? ('ev-' + evMap[iso]) : 'past';
-        html += '<td class="' + cls + '"><span>' + d + '</span></td>';
-        if (dow === 6 && d !== days) html += '</tr><tr>';
+        if (ev) cls = isFuture(iso) ? ('is-event ' + ev + (TRIAL_DATES.includes(iso) ? ' trial' : '')) : 'past';
+        const sel = (iso === selectedISO) ? ' selected' : '';
+        h += '<td data-iso="' + iso + '" class="' + cls + sel + '"><span class="cell">' + d + '</span></td>';
+        if (dow === 6 && d !== days) h += '</tr><tr>';
       }
-      html += '</tr></tbody></table></div>';
-      grid.insertAdjacentHTML('beforeend', html);
+      h += '</tr></tbody></table></div>';
+      wrap.insertAdjacentHTML('beforeend', h);
     });
-  })();
-
-  // ── 場次 → 日期連動 ──
-  function fillDateOptions(select, sessionKey, placeholder) {
-    select.innerHTML = placeholder;
-    SESSIONS[sessionKey].dates.filter(isFuture).forEach(iso => {
-      const opt = document.createElement('option');
-      opt.value = iso;
-      opt.textContent = fmt(iso) + (isEarly(iso) ? '　⚡ 早鳥價適用' : '');
-      select.appendChild(opt);
+    wrap.querySelectorAll('td.is-event').forEach(td => {
+      td.addEventListener('click', () => pickDate(td.dataset.iso));
     });
   }
-  function fillDate2() {
-    const first = dateSelect.value;
-    date2Select.innerHTML = '<option value="" selected>無（僅參加第一順位日期）</option>';
-    Object.keys(SESSIONS).forEach(key => {
-      SESSIONS[key].dates.filter(isFuture).filter(iso => iso !== first).forEach(iso => {
-        const opt = document.createElement('option');
-        opt.value = SESSIONS[key].icon + ' ' + fmt(iso) + ' ' + iso;
-        opt.textContent = SESSIONS[key].icon + ' ' + fmt(iso);
-        date2Select.appendChild(opt);
+
+  function pickDate(iso){
+    selectedISO = iso;
+    dateValueEl.value = iso;
+    const key = EVMAP[iso];
+    const radio = document.getElementById(key === 'sun' ? 'sess-sun' : 'sess-wed');
+    if (radio) radio.checked = true;
+    renderDateCal();
+    refreshPicked();
+    refreshBird();
+    fillDate2();
+    updateTotal();
+  }
+
+  function refreshPicked(){
+    const el = document.getElementById('datePicked');
+    el.textContent = selectedISO ? (S('pickedPre') + fmt(selectedISO)) : '';
+  }
+
+  function refreshBird(){
+    if (!selectedISO){ birdMsg.className = 'bird-msg'; birdMsg.textContent = ''; return; }
+    if (TRIAL_DATES.includes(selectedISO)) { birdMsg.className = 'bird-msg trial'; birdMsg.textContent = S('trial'); }
+    else if (isEarly(selectedISO)) { birdMsg.className = 'bird-msg ok'; birdMsg.textContent = S('earlyOk'); }
+    else { birdMsg.className = 'bird-msg late'; birdMsg.textContent = S('late'); }
+  }
+
+  function fillDate2(){
+    date2Select.innerHTML = '';
+    const none = document.createElement('option');
+    none.value = ''; none.textContent = S('none');
+    date2Select.appendChild(none);
+    ['sun','wed'].forEach(key => {
+      SESSIONS[key].dates.filter(isFuture).filter(iso => iso !== selectedISO).forEach(iso => {
+        const o = document.createElement('option');
+        o.value = SESSIONS[key].icon + ' ' + fmtZh(iso) + ' ' + iso;
+        o.textContent = SESSIONS[key].icon + ' ' + fmt(iso);
+        date2Select.appendChild(o);
       });
     });
   }
-  fillDate2();
 
-  function onSessionChange(key) {
-    fillDateOptions(dateSelect, key, '<option value="" disabled selected>請選擇日期</option>');
-    birdMsg.className = 'bird-msg';
-    fillDate2();
-    updateTotal();
-  }
+  // 場次卡片 radio 也能反向更新（清掉日期，避免不一致）
   document.querySelectorAll('input[name="session"]').forEach(radio => {
-    radio.addEventListener('change', () => onSessionChange(radio.value));
+    radio.addEventListener('change', () => {
+      if (selectedISO && EVMAP[selectedISO] !== radio.value) {
+        selectedISO = ''; dateValueEl.value = '';
+        renderDateCal(); refreshPicked(); refreshBird(); fillDate2(); updateTotal();
+      }
+    });
   });
-  // 瀏覽器重新整理時會自動還原已勾選的場次，但日期選單不會跟著更新 → 載入時同步一次
-  const restored = document.querySelector('input[name="session"]:checked');
-  if (restored) onSessionChange(restored.value);
 
-  dateSelect.addEventListener('change', () => {
-    const iso = dateSelect.value;
-    if (!iso) return;
-    if (isEarly(iso)) {
-      birdMsg.className = 'bird-msg ok';
-      birdMsg.textContent = '⚡ 早鳥價 NT$2,800 適用中（開課前 14 日截止）';
+  // ════ 暑假場 / 搶先體驗場切換 ════
+  function renderModePill(){
+    const pill = document.getElementById('formModePill');
+    const ts = document.getElementById('trialSection');
+    const trialOpen = today0() < new Date(TRIAL_CUTOFF + 'T00:00:00');
+    if (trialOpen){
+      pill.className = 'form-mode-pill trial';
+      pill.innerHTML = (LANG === 'en')
+        ? '⚡ Now open: 6/24 · 6/28 Preview Sessions (NT$2,500)'
+        : '⚡ 目前開放：6/24・6/28 搶先體驗場（NT$2,500）';
+      if (ts) ts.style.display = '';
     } else {
-      birdMsg.className = 'bird-msg late';
-      birdMsg.textContent = '早鳥已截止，票價為 NT$3,000';
+      pill.className = 'form-mode-pill normal';
+      pill.innerHTML = (LANG === 'en') ? 'Summer sessions open for registration' : '暑假場報名開放中';
+      if (ts) ts.style.display = 'none';
     }
-    fillDate2();
-    updateTotal();
-  });
+  }
 
-  // ── 還沒加 LINE 好友 → 自動開啟官方 LINE ──
-  const LINE_URL = 'https://lin.ee/OqU56Jq';
-  const lineHint = document.getElementById('lineHint');
-  document.getElementById('line-no').addEventListener('change', () => {
-    lineHint.style.display = 'block';
-    window.open(LINE_URL, '_blank');
-  });
-  document.getElementById('line-yes').addEventListener('change', () => {
-    lineHint.style.display = 'none';
-  });
-
+  // ════ 優惠碼 ════
   promoInput.addEventListener('input', () => {
     const v = promoInput.value.trim();
-    if (!v) { promoMsg.style.display = 'none'; updateTotal(); return; }
+    if (!v){ promoMsg.style.display = 'none'; updateTotal(); return; }
     promoMsg.style.display = 'block';
-    if (isPromo(v)) {
-      promoMsg.textContent = '✓ 優惠碼適用！折扣後金額 NT$2,500';
-      promoMsg.style.color = 'var(--green)';
-    } else {
-      promoMsg.textContent = '此優惠碼無效，將以原票價計算';
-      promoMsg.style.color = 'var(--error)';
-    }
+    if (isPromo(v)){ promoMsg.textContent = S('promoOk'); promoMsg.style.color = 'var(--spore)'; }
+    else { promoMsg.textContent = S('promoNo'); promoMsg.style.color = 'var(--error)'; }
     updateTotal();
   });
 
-  function currentPricing() {
-    if (isPromo(promoInput.value)) return { price: PRICE.promo, label: '優惠碼價' };
-    const iso = dateSelect.value;
+  // ════ LINE 好友 ════
+  const LINE_URL = 'https://lin.ee/OqU56Jq';
+  const lineHint = document.getElementById('lineHint');
+  document.getElementById('line-no').addEventListener('change', () => { lineHint.style.display = 'block'; window.open(LINE_URL, '_blank'); });
+  document.getElementById('line-yes').addEventListener('change', () => { lineHint.style.display = 'none'; });
+
+  // ════ 金額計算 ════
+  function pricingFor(iso, promoVal){
+    if (isPromo(promoVal)) return { price: PRICE.promo, key: 'promo' };
+    if (iso && TRIAL_DATES.includes(iso)) return { price: PRICE.trial, key: 'trial' };
     if (!iso) return null;
-    return isEarly(iso)
-      ? { price: PRICE.early, label: '早鳥票' }
-      : { price: PRICE.normal, label: '正常票' };
+    return isEarly(iso) ? { price: PRICE.early, key: 'early' } : { price: PRICE.normal, key: 'normal' };
   }
-  function updateTotal() {
-    const p = currentPricing();
-    if (!p) { totalAmount.textContent = '—'; totalDetail.textContent = '請先選擇日期'; return; }
+  function updateTotal(){
+    const p = pricingFor(selectedISO, promoInput.value);
+    if (!p){ totalAmount.textContent = '—'; totalDetail.textContent = S('pickDate'); return; }
+    const lab = TICKETS[p.key][LANG === 'en' ? 'en' : 'zh'];
     totalAmount.textContent = 'NT$' + p.price.toLocaleString();
-    totalDetail.textContent = p.label + '・含 NT$2,400 贈品';
+    totalDetail.textContent = lab + S('gift');
   }
 
+  // ════ 送出 ════
   document.getElementById('signupForm').addEventListener('submit', e => {
     e.preventDefault();
     const form = e.target;
     if (!form.reportValidity()) return;
+    if (!selectedISO){
+      birdMsg.className = 'bird-msg late';
+      birdMsg.textContent = S('needDate');
+      document.getElementById('dateCal').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
 
-    const p = currentPricing() || { price: '', label: '' };
+    const p = pricingFor(selectedISO, promoInput.value) || { price: '', key: 'normal' };
     const sessionVal = form.querySelector('input[name="session"]:checked').value;
     const lineEl = form.querySelector('input[name="line_friend"]:checked');
     const data = {
@@ -1236,9 +1406,9 @@
       phone: form.phone.value.trim(),
       email: form.email.value.trim(),
       session: SESSIONS[sessionVal].name,
-      date: fmt(dateSelect.value) + ' ' + dateSelect.value,
+      date: fmtZh(selectedISO) + ' ' + selectedISO,
       date2: date2Select.value || '',
-      ticket: p.label,
+      ticket: TICKETS[p.key].zh,
       price: p.price,
       promo: promoInput.value.trim(),
       line_friend: lineEl ? lineEl.value : '',
@@ -1257,12 +1427,24 @@
       }).catch(err => console.warn('[MYCOGEN] 送出失敗：', err));
     }
 
-    document.getElementById('successEmail').textContent = '📧 信件將寄至 ' + data.email;
+    const okMailZh = '📧 信件將寄至 ' + data.email;
+    const okMailEn = '📧 The email will be sent to ' + data.email;
+    document.getElementById('successEmail').textContent = (LANG === 'en') ? okMailEn : okMailZh;
     form.style.display = 'none';
     const ok = document.getElementById('successMsg');
     ok.style.display = 'block';
     ok.scrollIntoView({ behavior: 'smooth' });
   });
+
+  // ════ 初始化 ════
+  captureZh();
+  renderModePill();
+  renderDateCal();
+  fillDate2();
+  updateTotal();
+  let savedLang = 'zh';
+  try { savedLang = localStorage.getItem('myco_lang') || 'zh'; } catch(e){}
+  if (savedLang === 'en') setLang('en');
 </script>
 
 </body>
